@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prerna Singhal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #FF2D78;
+    --pink-soft: #FF6BA8;
+    --pink-glow: rgba(255,45,120,0.15);
+    --yellow: #FFE600;
+    --yellow-soft: #FFF176;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --card: #161616;
+    --card2: #1C1C1C;
+    --border: rgba(255,255,255,0.07);
+    --border-pink: rgba(255,45,120,0.3);
+    --text: #F0F0F0;
+    --muted: #888;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
+
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,45,120,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,45,120,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--pink);
+    letter-spacing: 0.05em;
+  }
+  .nav-logo span { color: var(--yellow); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--pink); }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--pink);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--pink);
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 800;
+    font-style: italic;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name .accent { color: var(--pink); }
+  .hero-name .accent2 { color: var(--yellow); }
+
+  .hero-desc {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+  .hero-desc .hl { color: var(--pink-soft); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--yellow);
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.8rem;
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary {
+    background: var(--pink);
+    color: #fff;
+    border: 1px solid var(--pink);
+  }
+  .btn-primary:hover { background: transparent; color: var(--pink); }
+  .btn-outline {
+    background: transparent;
+    color: var(--yellow);
+    border: 1px solid rgba(255,230,0,0.4);
+  }
+  .btn-outline:hover { border-color: var(--yellow); background: rgba(255,230,0,0.05); }
+
+  /* SCROLL INDICATOR */
+  .scroll-line {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .scroll-line::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--pink), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    margin-bottom: 4rem;
+  }
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--pink);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-tag::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: var(--pink);
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--pink), transparent);
+    opacity: 0.2;
+    margin: 0;
+  }
+
+  /* ABOUT SECTION */
+  #about { background: var(--dark); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 1.25rem;
+  }
+  .about-text .em { color: var(--pink-soft); font-weight: 600; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--yellow);
+    background: rgba(255,230,0,0.06);
+    border: 1px solid rgba(255,230,0,0.15);
+    padding: 0.5rem 0.75rem;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .skill-tag::before {
+    content: '▸';
+    color: var(--pink);
+    font-size: 0.6rem;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--black); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    border: 1.5px solid var(--border);
+  }
+  .project-card {
+    background: var(--card);
+    padding: 2.5rem;
+    border: 1.5px solid transparent;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--pink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-card:hover { background: var(--card2); border-color: var(--border-pink); }
+  .project-num {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--pink);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.25rem;
+  }
+  .project-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .project-subtitle {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--yellow);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .ptag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--pink-soft);
+    background: var(--pink-glow);
+    border: 1px solid var(--border-pink);
+    padding: 0.3rem 0.6rem;
+    letter-spacing: 0.05em;
+  }
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .project-card.featured .project-title { font-size: 1.8rem; }
+  .featured-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--yellow);
+    background: rgba(255,230,0,0.1);
+    border: 1px solid rgba(255,230,0,0.3);
+    padding: 0.25rem 0.6rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+  }
+  .aasha-stat {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: rgba(255,45,120,0.05);
+    border: 1px solid var(--border-pink);
+    margin-bottom: 1rem;
+  }
+  .aasha-stat-num {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--pink);
+  }
+  .aasha-stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--dark); }
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--pink), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 3.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 0.35rem;
+    width: 7px;
+    height: 7px;
+    background: var(--pink);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--pink);
+  }
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--pink);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .timeline-org {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.25rem;
+  }
+  .timeline-role {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--yellow);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .timeline-bullets li {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .timeline-bullets li::before {
+    content: '—';
+    color: var(--pink);
+    flex-shrink: 0;
+    font-family: var(--mono);
+  }
+
+  /* AWARDS */
+  #awards { background: var(--black); }
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+  .award-card {
+    background: var(--card);
+    padding: 1.75rem 2rem;
+    transition: background 0.2s;
+  }
+  .award-card:hover { background: var(--card2); }
+  .award-icon {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--yellow);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+  .award-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.01em;
+  }
+  .award-org {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* IMPACT / VIKSIT */
+  #impact { background: var(--dark); }
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .impact-text h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .impact-text p {
+    font-size: 0.9rem;
+    color: #bbb;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .impact-nums {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .impact-num-card {
+    padding: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--yellow);
+  }
+  .impact-num {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--yellow);
+    display: block;
+  }
+  .impact-num-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+    display: block;
+  }
+
+  /* PROGRAMS */
+  #programs { background: var(--black); }
+  .programs-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .prog-card {
+    padding: 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .prog-card:hover { border-color: var(--border-pink); }
+  .prog-year {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .prog-name {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+  }
+  .prog-org {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--pink);
+    margin-bottom: 0.75rem;
+  }
+  .prog-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .prog-badge {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--yellow);
+    background: rgba(255,230,0,0.08);
+    border: 1px solid rgba(255,230,0,0.2);
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* CONTACT / FOOTER */
+  #contact {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #contact::before {
+    content: 'PRERNA';
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
+    font-size: 14rem;
+    font-weight: 800;
+    color: rgba(255,45,120,0.03);
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .contact-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 4rem;
+  }
+  .contact-left h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+  }
+  .contact-left h2 span { color: var(--pink); }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  .contact-link {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--pink); }
+  .contact-link .arrow { color: var(--pink); }
+
+  footer {
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  footer span { color: var(--pink); }
+
+  /* TERMINAL BLOCK */
+  .terminal {
+    background: #0d0d0d;
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    line-height: 1.8;
+    margin-top: 2rem;
+    position: relative;
+  }
+  .terminal::before {
+    content: '● ● ●';
+    display: block;
+    color: var(--border);
+    margin-bottom: 1rem;
+    letter-spacing: 0.3em;
+  }
+  .t-prompt { color: var(--pink); }
+  .t-cmd { color: var(--yellow); }
+  .t-out { color: #888; }
+  .t-green { color: #4ade80; }
+
+  /* CURSOR BLINK */
+  .cursor {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.8rem;
+    background: var(--pink);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .container { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .about-grid, .impact-grid, .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-template-columns: 1fr; }
+    .awards-grid { grid-template-columns: 1fr 1fr; }
+    .programs-list { grid-template-columns: 1fr; }
+    .contact-inner { flex-direction: column; align-items: flex-start; }
+    .contact-links { align-items: flex-start; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PS<span>_</span>v2025<span>.build</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">Builder · Researcher · Student Leader</div>
+  <h1 class="hero-name">
+    Prerna<br>
+    <span class="accent">Sin</span><span class="accent2">ghal</span>
+  </h1>
+  <p class="hero-desc">
+    Building <span class="hl">agentic AI systems</span>, multilingual companions, and full-stack healthcare platforms.<br>
+    CS Club President · Head Girl · 4× Published Author · ISRO YUVIKA Scholar.<br>
+    Currently shipping at <span class="hl">Empros International School</span>.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">1,500+</span>
+      <span class="stat-label">Monthly Active Users</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">68</span>
+      <span class="stat-label">Old Age Homes Served</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Research Publications</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Published Books</span>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+    <a href="https://www.linkedin.com/in/prerna-singhal-b4074b282/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    <a href="https://x.com/singhalprern" target="_blank" class="btn btn-outline">Twitter ↗</a>
+  </div>
+  <div class="scroll-line"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Who I Am</div>
+      <h2 class="section-title">Engineer.<br>Researcher.<br>Builder.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a student at <span class="em">Empros International School</span> — serving as Head Girl and President of the CS Club. I build AI systems that actually ship to real users: multilingual voice companions for elderly care, end-to-end healthcare networks, and agentic tools that automate complex workflows.
+        </p>
+        <p>
+          My technical obsession spans <span class="em">agentic AI architectures, memory systems, model fine-tuning, and project frameworks</span>. I've been recognized by AIIMS Delhi (India's #1 medical institute) for my work in healthcare AI, and shortlisted as one of India's top 50 students by ISRO.
+        </p>
+        <p>
+          I write research papers, publish books, win international olympiads, and run a non-profit — often simultaneously. I believe the best builders aren't just technically strong; they understand the humans their systems serve.
+        </p>
+        <div class="terminal">
+          <div><span class="t-prompt">prerna@build:~$ </span><span class="t-cmd">git log --oneline</span></div>
+          <div><span class="t-out">a9f3c2e </span><span class="t-green">feat: Aasha multilingual companion v3.0</span></div>
+          <div><span class="t-out">b1e4a91 </span><span class="t-green">build: Aarolic healthcare ecosystem iOS</span></div>
+          <div><span class="t-out">c77d304 </span><span class="t-green">research: 4th publication submitted</span></div>
+          <div><span class="t-out">d2091fe </span><span class="t-green">led: Hack Kissan 0.1 — 2.5K participants</span></div>
+          <div><span class="t-prompt">prerna@build:~$ </span><span class="cursor"></span></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.25rem;">Technical Stack</p>
+        <div class="skills-grid">
+          <div class="skill-tag">Agentic AI</div>
+          <div class="skill-tag">LLM Fine-Tuning</div>
+          <div class="skill-tag">Memory Systems</div>
+          <div class="skill-tag">AI Agents</div>
+          <div class="skill-tag">iOS / Swift</div>
+          <div class="skill-tag">Python / ML</div>
+          <div class="skill-tag">Web Dev</div>
+          <div class="skill-tag">JavaScript</div>
+          <div class="skill-tag">Data Science</div>
+          <div class="skill-tag">Cybersecurity</div>
+          <div class="skill-tag">GenAI Systems</div>
+          <div class="skill-tag">Microservices</div>
+          <div class="skill-tag">HTML / CSS</div>
+          <div class="skill-tag">System Design</div>
+          <div class="skill-tag">Project Arch.</div>
+          <div class="skill-tag">NLP / Voice</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">What I Build</div>
+      <h2 class="section-title">Shipped Projects</h2>
+    </div>
+    <div class="projects-grid">
+
+      <!-- FEATURED: AASHA -->
+      <div class="project-card featured">
+        <div>
+          <div class="featured-badge">FLAGSHIP PROJECT</div>
+          <div class="project-num">01 / AASHA</div>
+          <h3 class="project-title">Aasha</h3>
+          <p class="project-subtitle">Multilingual AI Companion · Maharashtra, India</p>
+          <p class="project-desc">
+            A multilingual companion built for senior citizens in old age homes across Maharashtra. Aasha uses voice-first interaction and custom NLP pipelines to bridge language barriers and combat isolation. Recognized by AIIMS Delhi for its impact on elderly mental wellness.
+          </p>
+          <div class="project-tags">
+            <span class="ptag">Agentic AI</span>
+            <span class="ptag">NLP</span>
+            <span class="ptag">Voice UI</span>
+            <span class="ptag">Multilingual</span>
+            <span class="ptag">Memory Systems</span>
+          </div>
+        </div>
+        <div>
+          <div class="aasha-stat">
+            <span class="aasha-stat-num">1,500–1,600</span>
+            <span class="aasha-stat-label">Monthly Active Users</span>
+          </div>
+          <div class="aasha-stat">
+            <span class="aasha-stat-num">68</span>
+            <span class="aasha-stat-label">Old Age Homes · Maharashtra</span>
+          </div>
+          <div class="aasha-stat">
+            <span class="aasha-stat-num" style="color:var(--yellow)">AIIMS Delhi</span>
+            <span class="aasha-stat-label">Recognition · #1 Medical Inst. India</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AAROLIC -->
+      <div class="project-card">
+        <div class="project-num">02 / AAROLIC</div>
+        <h3 class="project-title">Aarolic</h3>
+        <p class="project-subtitle">AI Healthcare Ecosystem · iOS Platform</p>
+        <p class="project-desc">
+          End-to-end GenAI healthcare platform connecting patients, doctors, and providers. Features intelligent pre-diagnosis, smart scheduling with no-show reduction, e-prescriptions, and real-time hospital analytics. Built on microservices with hash-based encrypted data handling.
+        </p>
+        <div class="project-tags">
+          <span class="ptag">GenAI</span>
+          <span class="ptag">iOS</span>
+          <span class="ptag">Microservices</span>
+          <span class="ptag">Healthcare</span>
+          <span class="ptag">Data Privacy</span>
+        </div>
+      </div>
+
+      <!-- FEMALE FINANCY -->
+      <div class="project-card">
+        <div class="project-num">03 / FEMALE FINANCY</div>
+        <h3 class="project-title">Female Financy</h3>
+        <p class="project-subtitle">Kode With Klossy Capstone · Women's FinLit</p>
+        <p class="project-desc">
+          Led the capstone project for the KWK Web Dev program (top 2.3% selection). A financial literacy platform designed to empower women with accessible money management tools. Built with HTML, CSS, and JavaScript.
+        </p>
+        <div class="project-tags">
+          <span class="ptag">HTML/CSS/JS</span>
+          <span class="ptag">FinTech</span>
+          <span class="ptag">Team Lead</span>
+        </div>
+      </div>
+
+      <!-- HACK KISSAN -->
+      <div class="project-card">
+        <div class="project-num">04 / HACK KISSAN 0.1</div>
+        <h3 class="project-title">Hack Kissan 0.1</h3>
+        <p class="project-subtitle">First Interschool Hackathon · Organizer</p>
+        <p class="project-desc">
+          Conceived and organized the first-ever interschool hackathon under the CS Club banner. Brought together 2,500+ participants, coordinated logistics, mentors, and judging. Built the event infrastructure and managed end-to-end execution.
+        </p>
+        <div class="project-tags">
+          <span class="ptag">Event Architecture</span>
+          <span class="ptag">2,500+ Participants</span>
+          <span class="ptag">Org Lead</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Timeline</div>
+      <h2 class="section-title">Experience &<br>Education</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">Current</div>
+        <div class="timeline-org">Empros International School</div>
+        <div class="timeline-role">Head Girl · CS Club President · Technical Head, School Website</div>
+        <ul class="timeline-bullets">
+          <li>Leading the school as Head Girl — coordinating student initiatives, events, and representing student voice</li>
+          <li>Running the CS Club, organizing coding workshops, and mentoring junior students</li>
+          <li>Technical Head of the school's official website codebase — managing architecture, updates, and dev pipeline</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2024</div>
+        <div class="timeline-org">ISRO — Indian Space Research Organisation</div>
+        <div class="timeline-role">YUVIKA Program Scholar · Top 50 Nationally</div>
+        <ul class="timeline-bullets">
+          <li>Shortlisted among top 50 students nationally for this prestigious residential space science program</li>
+          <li>1:1 interaction with astronauts selected for the Gaganyaan mission and Dr. V. Narayanan</li>
+          <li>Hands-on exposure to satellite technology, rocket systems, and ISRO's core R&D areas</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Aug–Dec 2023</div>
+        <div class="timeline-org">Girls Who Code × Morgan Stanley</div>
+        <div class="timeline-role">Summer Immersion Program · Scholar</div>
+        <ul class="timeline-bullets">
+          <li>Worked across web development, JavaScript, data science, and cybersecurity</li>
+          <li>Won team raffle; networked with Morgan Stanley employees across engineering and finance</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Jul–Aug 2023</div>
+        <div class="timeline-org">Kode With Klossy</div>
+        <div class="timeline-role">Web Dev Scholar · Top 2.3% Selection · New York, USA</div>
+        <ul class="timeline-bullets">
+          <li>Awarded scholarship for intensive STEAM program empowering women and non-binary students</li>
+          <li>Led capstone group project — built "Female Financy" in HTML, CSS, and JavaScript</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">May–Jun 2023</div>
+        <div class="timeline-org">IISER Bhopal</div>
+        <div class="timeline-role">Summer Intern · National Top 200 Selection</div>
+        <ul class="timeline-bullets">
+          <li>Among top 200 students nationally selected for the IISER Summer Outreach Camp 2023</li>
+          <li>Worked with professors in neuroscience and computer sciences; hands-on lab sessions</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 2023 – Mar 2025</div>
+        <div class="timeline-org">Kissan International School</div>
+        <div class="timeline-role">Grades 8–10 · CS Club President · Newsletter Chief Editor</div>
+        <ul class="timeline-bullets">
+          <li>Founded and led the CS Club; organized Hack Kissan 0.1 with 2,500+ participants</li>
+          <li>International olympiad awardee — gold medals in Singapore, Asian, and American olympiads</li>
+          <li>Outstanding Academic Award · Chess Tournaments Winner · Newsletter Chief Editor</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Recognition</div>
+      <h2 class="section-title">Awards &<br>Achievements</h2>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card">
+        <div class="award-icon">🏅 INTERNATIONAL</div>
+        <div class="award-title">Diamond Award — Southeast Asia Science Olympiad</div>
+        <div class="award-org">Top ranking in regional science competition</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🥇 MATHEMATICS</div>
+        <div class="award-title">3× Gold — American Mathematics Olympiad</div>
+        <div class="award-org">Three consecutive gold medals</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🥇 MATHEMATICS</div>
+        <div class="award-title">Gold — Pacific Asian Math Competition</div>
+        <div class="award-org">International mathematical excellence</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🧪 SCIENCE</div>
+        <div class="award-title">4× International Chemistry Quiz</div>
+        <div class="award-org">Four-time international chemistry awardee</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🌏 LEADERSHIP</div>
+        <div class="award-title">Harvard CPAIR Conference Scholar</div>
+        <div class="award-org">Chosen among 300 global leaders · $500 scholarship</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🏥 HEALTHCARE AI</div>
+        <div class="award-title">AIIMS Delhi Recognition</div>
+        <div class="award-org">India's #1 medical institute · Aasha project</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🏆 GOLD MEDALS</div>
+        <div class="award-title">Singapore, Asian & American Olympiads</div>
+        <div class="award-org">Multiple gold medals across international competitions</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">📚 RESEARCH</div>
+        <div class="award-title">4 Research Publications · 2 Books</div>
+        <div class="award-org">Published researcher and author</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🚀 ISRO</div>
+        <div class="award-title">YUVIKA Scholar · Top 50 India</div>
+        <div class="award-org">National selection for ISRO's youth program</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Beyond Code</div>
+      <h2 class="section-title">Community<br>Impact</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-text">
+        <h3>Viksit Youth — Student-Led Non-Profit</h3>
+        <p>
+          I founded Viksit Youth — a student-driven non-profit focused on environmental awareness, civic education, and elder care. VIKSIT stands for the younger generation advancing toward responsible and aware citizenship.
+        </p>
+        <p>
+          We've organized large-scale cleanup drives, provided sustained support to senior citizens in old age homes, and delivered foundational civic and science sessions at government schools across the region.
+        </p>
+        <p>
+          Every initiative is student-led, with short-term measurable goals designed for environmental good and community uplift. We believe the best technology is useless if we don't also show up for our communities in person.
+        </p>
+      </div>
+      <div class="impact-nums">
+        <div class="impact-num-card">
+          <span class="impact-num">62,500 m²</span>
+          <span class="impact-num-label">Locations Cleaned</span>
+        </div>
+        <div class="impact-num-card">
+          <span class="impact-num">4,500+</span>
+          <span class="impact-num-label">Senior Citizens Helped</span>
+        </div>
+        <div class="impact-num-card">
+          <span class="impact-num">25+</span>
+          <span class="impact-num-label">Govt. Schools Reached</span>
+        </div>
+        <div class="impact-num-card">
+          <span class="impact-num">Founder</span>
+          <span class="impact-num-label">Student-Led Non-Profit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Selective Programs</div>
+      <h2 class="section-title">Fellowships &<br>Programs</h2>
+    </div>
+    <div class="programs-list">
+      <div class="prog-card">
+        <div class="prog-badge">TOP 50 · NATIONAL</div>
+        <div class="prog-year">2024</div>
+        <div class="prog-name">YUVIKA Scholar</div>
+        <div class="prog-org">ISRO — Indian Space Research Organisation</div>
+        <p class="prog-desc">Residential space science program. Interacted with Gaganyaan mission astronauts and Dr. V. Narayanan. Hands-on with satellite tech and rocket systems.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-badge">$500 SCHOLARSHIP</div>
+        <div class="prog-year">2024</div>
+        <div class="prog-name">CPAIR Conference</div>
+        <div class="prog-org">Harvard College Project for Asian & Int'l Relations</div>
+        <p class="prog-desc">Chosen among 300 global leaders. Networked internationally with emerging leaders, understanding both shared qualities and unique paths to impact.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-badge">TOP 2.3%</div>
+        <div class="prog-year">2023</div>
+        <div class="prog-name">Kode With Klossy Scholar</div>
+        <div class="prog-org">Kode With Klossy · New York, USA</div>
+        <p class="prog-desc">Scholarship for two-week intensive Web Dev program for women in STEAM. Led capstone group, built Female Financy.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-year">2023</div>
+        <div class="prog-name">Morgan Stanley Immersion</div>
+        <div class="prog-org">Girls Who Code × Morgan Stanley</div>
+        <p class="prog-desc">5-month program across web dev, JavaScript, data science, and cybersecurity. Team raffle winner. Connected with Stanley engineering staff.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-badge">TOP 200 · NATIONAL</div>
+        <div class="prog-year">2023</div>
+        <div class="prog-name">Summer Intern</div>
+        <div class="prog-org">IISER Bhopal</div>
+        <p class="prog-desc">Top 200 nationally. Research exposure in neuroscience and CS departments. Hands-on lab sessions under professor guidance.</p>
+      </div>
+      <div class="prog-card">
+        <div class="prog-year">Ongoing</div>
+        <div class="prog-name">Active Research</div>
+        <div class="prog-org">Independent · 4 Publications · 2 Books</div>
+        <p class="prog-desc">Four published research papers and two books. Constant exploration across AI systems, healthcare technology, and applied computer science.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <h2>Let's<br><span>Connect.</span></h2>
+        <p style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);max-width:400px;line-height:1.7;">
+          I'm always open to collaboration on AI projects, research, hackathons, or just interesting conversations about what we're building.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/prerna-singhal-b4074b282/" target="_blank" class="contact-link">
+          <span class="arrow">↗</span> LinkedIn
+        </a>
+        <a href="https://x.com/singhalprern" target="_blank" class="contact-link">
+          <span class="arrow">↗</span> Twitter / X
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Prerna Singhal</span> — Built with intention.</p>
+  <p>Empros International School · Maharashtra, India</p>
+</footer>
+
+<script>
+  // Staggered fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.project-card, .award-card, .prog-card, .timeline-item, .impact-num-card, .skill-tag').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = `opacity 0.5s ease ${i * 0.05}s, transform 0.5s ease ${i * 0.05}s`;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
