@@ -1,1135 +1,2849 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="paper">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Prerna Singhal — Builder · Researcher · Student Leader. Agentic AI systems, healthcare platforms, published author.">
-  <title>Prerna Singhal</title>
+  <meta name="description" content="Prerna Singhal — Systems Builder, Published Researcher, Patented Inventor, and Founder. Based in Pune, India.">
+  <title>Prerna Singhal — Monograph &amp; Field Dossier</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --cream: #FAF7F2;
-      --cream-mid: #F0EAE0;
-      --cream-dark: #E4D9CC;
-      --cream-border: #D9CFBF;
-      --black: #0C0C0C;
-      --black-2: #1A1A1A;
-      --white: #FFFFFF;
-      --gray: #6A6460;
-      --gray-light: #B8B0A8;
-      --gold: #C4965A;
-      --nav-h: 70px;
+    /* ─── RESET & ARCHIVAL TOKENS ─── */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    html { scroll-behavior: smooth; }
+    :root {
+      --bg-primary: #F4EFE6;
+      --bg-elevated: #FAF7F1;
+      --bg-secondary: #EAE3D5;
+      --bg-invert: #121311;
+      --text-primary: #121311;
+      --text-secondary: #4A4740;
+      --text-muted: #78736A;
+      --text-on-invert: #F4EFE6;
+      --rule-strong: #121311;
+      --rule-hairline: #CEC6B6;
+      --accent: #C83E2B;          /* Editorial Signal Vermilion */
+      --accent-soft: rgba(200, 62, 43, 0.09);
+      --ochre: #9A6B26;           /* Archival Brass */
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      --container-max: 1280px;
+      --gutter: clamp(20px, 4vw, 48px);
+    }
+
+    [data-theme="obsidian"] {
+      --bg-primary: #111210;
+      --bg-elevated: #181A17;
+      --bg-secondary: #1E201C;
+      --bg-invert: #F4EFE6;
+      --text-primary: #F2EDE4;
+      --text-secondary: #B8B2A6;
+      --text-muted: #7E7970;
+      --text-on-invert: #111210;
+      --rule-strong: #F2EDE4;
+      --rule-hairline: #2C2F29;
+      --accent: #E25440;
+      --accent-soft: rgba(226, 84, 64, 0.14);
+      --ochre: #D49B4B;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--cream);
-      color: var(--black);
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.65;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      position: relative;
+    }
+
+    /* Subtle tactile paper grain via inline SVG filter */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #FAF7F1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ─── ARCHITECTURAL SHELL ─── */
+    .shell {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ─── TOP MASTHEAD & BROADSHEET BAR ─── */
+    .masthead {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: var(--bg-primary);
+      border-bottom: 1.5px solid var(--rule-strong);
+      transition: background-color 0.35s ease;
+    }
+
+    .masthead-meta {
+      border-bottom: 1px solid var(--rule-hairline);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 7px 0;
+    }
+
+    .masthead-meta-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 62px;
+      gap: 24px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      padding: 4px 0;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1.5px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-btn {
+      background: transparent;
+      border: 1px solid var(--rule-strong);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 11px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      background: var(--rule-strong);
+      color: var(--bg-primary);
+    }
+
+    .nav-burger {
+      display: none;
+      background: none;
+      border: 1px solid var(--rule-strong);
+      color: var(--text-primary);
+      padding: 6px 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    /* ─── HERO EDITORIAL SPREAD ─── */
+    .hero {
+      padding: 56px 0 0;
+      border-bottom: 1.5px solid var(--rule-strong);
+    }
+
+    .hero-spread {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--rule-hairline);
+    }
+
+    .hero-main {
+      grid-column: span 8;
+      padding: 44px 48px 52px 0;
+      border-right: 1px solid var(--rule-hairline);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .kicker::before {
+      content: '';
+      width: 24px;
+      height: 1.5px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .hero-display {
+      font-family: var(--font-display);
+      font-size: clamp(50px, 7.2vw, 96px);
+      font-weight: 400;
+      line-height: 0.94;
+      letter-spacing: -0.035em;
+      margin-bottom: 28px;
+    }
+
+    .hero-display em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+
+    .hero-lead {
+      font-size: clamp(17px, 1.8vw, 21px);
+      line-height: 1.55;
+      color: var(--text-primary);
+      max-width: 660px;
+      margin-bottom: 22px;
+      font-weight: 500;
+    }
+
+    .hero-subcopy {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      max-width: 630px;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule-hairline);
+    }
+
+    .btn-sharp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 13px 22px;
+      border: 1.5px solid var(--rule-strong);
+      transition: all 0.2s ease;
+      font-weight: 700;
+    }
+
+    .btn-sharp.primary {
+      background: var(--rule-strong);
+      color: var(--bg-primary);
+    }
+
+    .btn-sharp.primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FAF7F1;
+    }
+
+    .btn-sharp.secondary {
+      background: transparent;
+      color: var(--text-primary);
+    }
+
+    .btn-sharp.secondary:hover {
+      background: var(--bg-secondary);
+    }
+
+    .social-strip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .social-sq {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--rule-hairline);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .social-sq:hover {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #FAF7F1;
+    }
+
+    .social-sq svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* ─── HERO PORTRAIT SPECIMEN COLUMN ─── */
+    .hero-specimen {
+      grid-column: span 4;
+      padding: 44px 0 44px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .specimen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule-hairline);
+    }
+
+    .portrait-stage {
+      position: relative;
+      border: 1.5px solid var(--rule-strong);
+      background: var(--bg-secondary);
+      padding: 10px;
+    }
+
+    /* Corner registration ticks */
+    .portrait-stage::before,
+    .portrait-stage::after {
+      content: '+';
+      position: absolute;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      line-height: 1;
+      z-index: 3;
+    }
+    .portrait-stage::before { top: -8px; left: -6px; }
+    .portrait-stage::after { bottom: -8px; right: -6px; }
+
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--bg-elevated);
+      position: relative;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: contrast(1.03);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .portrait-stage:hover .photo-frame img {
+      transform: scale(1.02);
+    }
+
+    .photo-initials {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 76px;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .specimen-plaque {
+      margin-top: 16px;
+      border-top: 1px solid var(--rule-hairline);
+      padding-top: 14px;
+    }
+
+    .plaque-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--rule-hairline);
+      font-size: 12.5px;
+    }
+
+    .plaque-row:last-child {
+      border-bottom: none;
+    }
+
+    .plaque-key {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .plaque-val {
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* ─── AUDITED METRICS LEDGER (HERO FOOTER) ─── */
+    .ledger-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      border-top: 1.5px solid var(--rule-strong);
+    }
+
+    .ledger-cell {
+      padding: 24px 20px;
+      border-right: 1px solid var(--rule-hairline);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ledger-cell:last-child {
+      border-right: none;
+    }
+
+    .ledger-index {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .ledger-figure {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.2vw, 42px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .ledger-figure sup {
+      font-size: 0.55em;
+      color: var(--accent);
+      font-family: var(--font-mono);
+    }
+
+    .ledger-caption {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    /* ─── SECTION ARCHITECTURE ─── */
+    .monograph-section {
+      padding: 96px 0;
+      border-bottom: 1.5px solid var(--rule-strong);
+    }
+
+    .section-header-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 56px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--rule-strong);
+    }
+
+    .sec-meta-col {
+      grid-column: span 3;
+    }
+
+    .sec-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .sec-taxonomy {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .sec-title-col {
+      grid-column: span 6;
+    }
+
+    .sec-heading {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 4.5vw, 56px);
+      font-weight: 400;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+    }
+
+    .sec-heading em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+
+    .sec-note-col {
+      grid-column: span 3;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ─── SECTION 01: BIOGRAPHY & ETHOS (ASYMMETRIC DOSSIER) ─── */
+    .dossier-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 40px;
+    }
+
+    .dossier-essay {
+      grid-column: span 7;
+      padding-right: 24px;
+      border-right: 1px solid var(--rule-hairline);
+    }
+
+    .dropcap-p {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+    }
+
+    .dropcap-p::first-letter {
+      font-family: var(--font-display);
+      font-size: 62px;
+      float: left;
+      line-height: 0.82;
+      padding-right: 14px;
+      padding-top: 4px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .essay-p {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 22px;
+    }
+
+    .editorial-pullquote {
+      margin: 34px 0;
+      padding: 24px 28px;
+      border-left: 3px solid var(--accent);
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--rule-hairline);
+      border-right: 1px solid var(--rule-hairline);
+      border-bottom: 1px solid var(--rule-hairline);
+    }
+
+    .editorial-pullquote p {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .editorial-pullquote cite {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .dossier-sidebar {
+      grid-column: span 5;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .archival-box {
+      border: 1px solid var(--rule-strong);
+      background: var(--bg-elevated);
+      padding: 28px;
+    }
+
+    .archival-box.invert {
+      background: var(--bg-invert);
+      color: var(--text-on-invert);
+    }
+
+    .box-header {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--rule-hairline);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .archival-box.invert .box-header {
+      border-bottom-color: rgba(244, 239, 230, 0.2);
+      color: #E25440;
+    }
+
+    .edu-entry {
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px dashed var(--rule-hairline);
+    }
+
+    .edu-entry:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .edu-school {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .edu-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin: 4px 0 10px;
+    }
+
+    .edu-details {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .grade-ledger {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule-hairline);
+      border: 1px solid var(--rule-hairline);
+      margin-top: 14px;
+    }
+
+    .grade-cell {
+      background: var(--bg-primary);
+      padding: 10px;
+      text-align: left;
+    }
+
+    .grade-yr {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .grade-val {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ─── SECTION 02: ENGINEERED SYSTEMS & PATENTED INVENTIONS ─── */
+    .invention-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1.5px solid var(--rule-strong);
+      background: var(--bg-elevated);
+    }
+
+    .invention-row {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      border-bottom: 1px solid var(--rule-strong);
+      transition: background-color 0.25s ease;
+    }
+
+    .invention-row:last-child {
+      border-bottom: none;
+    }
+
+    .invention-row:hover {
+      background-color: var(--bg-primary);
+    }
+
+    .inv-index-col {
+      grid-column: span 3;
+      padding: 36px 28px;
+      border-right: 1px solid var(--rule-hairline);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .inv-serial {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .inv-classification {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .inv-metric-callout {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--rule-hairline);
+    }
+
+    .inv-metric-num {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1.05;
+      color: var(--text-primary);
+    }
+
+    .inv-metric-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .inv-body-col {
+      grid-column: span 6;
+      padding: 36px 36px;
+      border-right: 1px solid var(--rule-hairline);
+    }
+
+    .inv-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .inv-subtitle {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ochre);
+      margin-bottom: 18px;
+    }
+
+    .inv-desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .inv-origin-note {
+      font-size: 13.5px;
+      line-height: 1.65;
+      padding: 12px 16px;
+      background: var(--accent-soft);
+      border-left: 2.5px solid var(--accent);
+      color: var(--text-primary);
+      margin-top: 14px;
+    }
+
+    .inv-spec-col {
+      grid-column: span 3;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .spec-group-title {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .spec-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .spec-list li {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--rule-hairline);
+      color: var(--text-primary);
+    }
+
+    .spec-stamp {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 8px 12px;
+      border: 1px solid var(--rule-strong);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      align-self: flex-start;
+    }
+
+    /* ─── SECTION 03: PUBLISHED RESEARCH & BOOKS ─── */
+    .papers-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-top: 1.5px solid var(--rule-strong);
+    }
+
+    .paper-item {
+      display: grid;
+      grid-template-columns: 110px 1fr 280px;
+      gap: 28px;
+      padding: 34px 0;
+      border-bottom: 1px solid var(--rule-hairline);
+      align-items: start;
+      transition: padding-left 0.25s ease;
+    }
+
+    .paper-item:hover {
+      padding-left: 10px;
+    }
+
+    .paper-id {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--accent);
+      line-height: 1.5;
+    }
+
+    .paper-domain {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .paper-title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 500;
+      line-height: 1.28;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .paper-abstract {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .paper-supervision {
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-left: 1px solid var(--rule-hairline);
+      padding-left: 20px;
+    }
+
+    .paper-mentor-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .paper-mentor-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .paper-mentor-affil {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .paper-laurel {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 8px;
+      border-left: 2px solid var(--accent);
+    }
+
+    /* Books Sub-spread */
+    .books-spread {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .book-folio {
+      border: 1.5px solid var(--rule-strong);
+      background: var(--bg-elevated);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .book-spine {
+      aspect-ratio: 2 / 3;
+      background: var(--bg-invert);
+      color: var(--text-on-invert);
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--rule-strong);
+      position: relative;
+      box-shadow: 6px 6px 0 var(--rule-hairline);
+    }
+
+    .book-spine-num {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+
+    .book-spine-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      line-height: 1.2;
+      font-style: italic;
+    }
+
+    .book-spine-author {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .book-meta-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .book-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .book-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ─── SECTION 04: VENTURE & ENGINEERING TENURE ─── */
+    .tenure-list {
+      border-top: 1.5px solid var(--rule-strong);
+    }
+
+    .tenure-row {
+      display: grid;
+      grid-template-columns: 220px 280px 1fr;
+      gap: 32px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--rule-hairline);
+      align-items: start;
+    }
+
+    .tenure-period {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .tenure-loc {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .tenure-role {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .tenure-org {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tenure-points {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 28px;
+    }
+
+    .tenure-points li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .tenure-points li::before {
+      content: '§';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    /* ─── SECTION 05: VIKSIT YOUTH (CIVIC FIELDWORK) ─── */
+    .civic-spread {
+      background: var(--bg-invert);
+      color: var(--text-on-invert);
+      border: 1.5px solid var(--rule-strong);
+      padding: clamp(32px, 5vw, 64px);
+    }
+
+    .civic-top {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(244, 239, 230, 0.18);
+    }
+
+    .civic-narrative {
+      grid-column: span 7;
+    }
+
+    .civic-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #E25440;
+      margin-bottom: 14px;
+    }
+
+    .civic-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.2vw, 52px);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .civic-title em {
+      font-style: italic;
+      color: #E25440;
+    }
+
+    .civic-copy {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: rgba(244, 239, 230, 0.82);
+      margin-bottom: 18px;
+    }
+
+    .civic-dispatch {
+      grid-column: span 5;
+      border: 1px solid rgba(244, 239, 230, 0.22);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .dispatch-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #E25440;
+      margin-bottom: 16px;
+    }
+
+    .dispatch-list {
+      list-style: none;
+    }
+
+    .dispatch-list li {
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(244, 239, 230, 0.16);
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: rgba(244, 239, 230, 0.88);
+    }
+
+    .dispatch-list li:last-child {
+      border-bottom: none;
+    }
+
+    .civic-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      padding-top: 40px;
+    }
+
+    .civic-stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 500;
+      color: #FAF7F1;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .civic-stat-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(244, 239, 230, 0.6);
+      line-height: 1.4;
+    }
+
+    /* ─── SECTION 06: HONOURS, FELLOWSHIPS & OLYMPIAD GAZETTE ─── */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--rule-strong);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--rule-strong);
+      color: var(--bg-primary);
+    }
+
+    .gazette-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1.5px solid var(--rule-strong);
+      border-left: 1.5px solid var(--rule-strong);
+    }
+
+    .gazette-cell {
+      padding: 28px;
+      border-right: 1.5px solid var(--rule-strong);
+      border-bottom: 1.5px solid var(--rule-strong);
+      background: var(--bg-elevated);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background-color 0.2s ease;
+    }
+
+    .gazette-cell:hover {
+      background: var(--bg-primary);
+    }
+
+    .gazette-cell.hidden {
+      display: none;
+    }
+
+    .gazette-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .gazette-rank {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .gazette-year {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .gazette-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.22;
+      margin-bottom: 6px;
+    }
+
+    .gazette-inst {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ochre);
+      margin-bottom: 12px;
+    }
+
+    .gazette-desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
       line-height: 1.6;
     }
 
-    /* ─── UTILITIES ─── */
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
-    .section { padding: 100px 0; }
-    .sec-label {
-      display: flex; align-items: center; gap: 14px;
-      font-size: 11px; font-weight: 700; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--gray); margin-bottom: 14px;
+    /* ─── SECTION 07: TECHNICAL INDEX & OFF-SCREEN DISCIPLINES ─── */
+    .dual-ledger {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 48px;
     }
-    .sec-label::after {
-      content: ''; flex: 1; max-width: 48px; height: 1px; background: var(--cream-border);
-    }
-    h2.sec-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(32px, 5vw, 50px);
-      font-weight: 700; line-height: 1.1; letter-spacing: -1px;
-    }
-    h2.sec-title em { font-style: italic; }
-    .sec-head { margin-bottom: 64px; }
-    .sec-head.center { text-align: center; }
 
-    .chip {
-      display: inline-block; background: var(--cream-mid);
-      color: var(--black-2); padding: 5px 13px; border-radius: 100px;
-      font-size: 11.5px; font-weight: 500;
-    }
-    .chip.dark { background: var(--black); color: var(--white); }
-    .chip.gold { background: rgba(196,150,90,0.12); color: var(--gold); }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-      height: var(--nav-h); transition: all .3s;
-    }
-    nav.scrolled {
-      background: rgba(250,247,242,.96);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--cream-dark);
-    }
-    .nav-inner {
-      max-width: 1160px; margin: 0 auto; padding: 0 32px;
-      height: 100%; display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px; font-weight: 700;
-      color: var(--black); text-decoration: none; letter-spacing: -.3px;
-    }
-    .nav-links { list-style: none; display: flex; gap: 36px; align-items: center; }
-    .nav-links a {
-      text-decoration: none; color: var(--black);
-      font-size: 13.5px; font-weight: 500; transition: opacity .2s;
-    }
-    .nav-links a:hover { opacity: .5; }
-    .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 2px; }
-
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh; display: flex; align-items: center;
-      padding: calc(var(--nav-h) + 40px) 0 60px;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background-image: radial-gradient(circle, var(--cream-dark) 1.2px, transparent 1.2px);
-      background-size: 38px 38px; opacity: .6;
-    }
-    .hero-grid {
-      display: grid; grid-template-columns: 1fr 400px;
-      gap: 64px; align-items: center;
-      position: relative; z-index: 1;
-    }
-    .hero-eyebrow {
-      font-size: 13px; font-weight: 500; color: var(--gray);
-      letter-spacing: .5px; margin-bottom: 10px;
-    }
-    .hero-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(52px, 8vw, 88px);
-      font-weight: 700; letter-spacing: -3px; line-height: 1.0;
-      margin-bottom: 18px;
-    }
-    .hero-bio {
-      font-size: 15.5px; line-height: 1.8; color: var(--gray);
-      max-width: 490px; margin-bottom: 36px;
-    }
-    .hero-stats {
-      display: flex; gap: 32px; margin-bottom: 36px;
-      padding-bottom: 36px; border-bottom: 1px solid var(--cream-dark);
-      flex-wrap: wrap;
-    }
-    .hstat-n { font-size: 28px; font-weight: 800; line-height: 1; display: block; }
-    .hstat-l { font-size: 11px; color: var(--gray); font-weight: 500; margin-top: 3px; }
-    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      text-decoration: none; font-size: 13.5px; font-weight: 600;
-      padding: 12px 24px; border-radius: 100px; transition: all .2s;
-    }
-    .btn-fill { background: var(--black); color: var(--white); }
-    .btn-fill:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.22); }
-    .btn-ghost { border: 1.5px solid var(--cream-border); color: var(--black); }
-    .btn-ghost:hover { border-color: var(--black); background: var(--cream-mid); }
-
-    .hero-socials { display: flex; gap: 7px; }
-    .si {
-      width: 38px; height: 38px; border-radius: 50%;
-      border: 1.5px solid var(--cream-border);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--black); text-decoration: none;
-      transition: all .2s;
-    }
-    .si:hover { border-color: var(--black); background: var(--black); color: var(--white); transform: translateY(-2px); }
-    .si svg { width: 14px; height: 14px; fill: currentColor; }
-
-    /* Photo */
-    .hero-photo-col { position: relative; }
-    .photo-wrap {
-      position: relative; display: inline-block;
+    .tech-spec-table {
       width: 100%;
+      border-collapse: collapse;
+      border-top: 1.5px solid var(--rule-strong);
     }
-    .photo-wrap::after {
-      content: ''; position: absolute;
-      top: 18px; left: 18px; right: -18px; bottom: -18px;
-      border: 1.5px solid var(--cream-dark); border-radius: 18px;
-      z-index: 0;
-    }
-    .photo-frame {
-      position: relative; z-index: 1;
-      width: 100%; aspect-ratio: 4/5;
-      border-radius: 16px; overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0,0,0,.1);
-      background: var(--cream-mid);
-    }
-    .photo-frame img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      object-position: center top;
-    }
-    .photo-initials {
-      width: 100%; height: 100%; display: flex;
-      align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif; font-size: 80px;
-      font-weight: 700; color: var(--gray);
-    }
-    .photo-badge-wrap {
-      position: absolute; bottom: -18px; left: -18px; right: 24px;
-      z-index: 2; display: flex; flex-direction: column; gap: 8px;
-      align-items: flex-start;
-    }
-    .pbadge {
-      background: var(--white);
-      border: 1px solid var(--cream-border);
-      border-radius: 10px; padding: 9px 14px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.08);
-      font-size: 12px; font-weight: 600; white-space: nowrap;
-      animation: floatUp 3.5s ease-in-out infinite;
-    }
-    .pbadge:nth-child(2) { animation-delay: 1.2s; }
-    .pbadge span { color: var(--gray); font-weight: 400; font-size: 11px; margin-left: 4px; }
-    @keyframes floatUp { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-    /* ─── TICKER ─── */
-    .ticker-section {
-      border-top: 1px solid var(--cream-dark);
-      border-bottom: 1px solid var(--cream-dark);
-      background: var(--cream-mid);
-      padding: 14px 0; overflow: hidden;
+    .tech-spec-table tr {
+      border-bottom: 1px solid var(--rule-hairline);
     }
-    .ticker-track {
-      display: flex; gap: 0; white-space: nowrap;
-      animation: tickerScroll 30s linear infinite;
-    }
-    .ticker-track:hover { animation-play-state: paused; }
-    @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .ticker-item {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--black-2);
-      padding: 0 32px;
-    }
-    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--cream-border); flex-shrink: 0; }
 
-    /* ─── ABOUT ─── */
-    .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; }
-    .card {
-      background: var(--white); border-radius: 20px;
-      padding: 38px; box-shadow: 0 2px 24px rgba(0,0,0,.04);
+    .tech-spec-table th {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-align: left;
+      padding: 20px 16px 20px 0;
+      width: 190px;
+      vertical-align: top;
     }
-    .card-dark { background: var(--black-2); color: var(--white); }
-    .bio-text { font-size: 15.5px; line-height: 1.8; margin-bottom: 22px; }
-    .quote-bar {
-      background: var(--cream-mid);
-      border-left: 3px solid var(--gold);
-      padding: 14px 18px; border-radius: 0 10px 10px 0;
-      font-size: 13.5px; line-height: 1.65; color: var(--black);
-    }
-    .lead-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
-    .lead-row:last-child { margin-bottom: 0; }
-    .lead-icon {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: rgba(255,255,255,.08); flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .lead-icon svg { width: 15px; height: 15px; fill: none; stroke: rgba(255,255,255,.7); stroke-width: 1.5; stroke-linecap: round; }
-    .lead-title { font-size: 14px; font-weight: 600; line-height: 1.3; }
-    .lead-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 2px; }
 
-    /* ─── EXPERIENCE ─── */
-    .bg-mid { background: var(--cream-mid); }
-    .tl { padding-left: 22px; position: relative; }
-    .tl::before {
-      content: ''; position: absolute; left: 0; top: 10px; bottom: 10px;
-      width: 1px; background: var(--cream-border);
+    .tech-spec-table td {
+      padding: 20px 0;
+      font-size: 14.5px;
+      color: var(--text-primary);
+      line-height: 1.7;
     }
-    .tl-item { position: relative; padding-left: 34px; margin-bottom: 36px; }
-    .tl-item:last-child { margin-bottom: 0; }
-    .tl-dot {
-      position: absolute; left: -28px; top: 10px;
-      width: 12px; height: 12px; border-radius: 50%;
-      background: var(--gold); border: 3px solid var(--cream-mid);
-      box-shadow: 0 0 0 2px var(--gold);
-    }
-    .exp-card {
-      background: var(--white); border-radius: 18px;
-      padding: 34px; box-shadow: 0 2px 20px rgba(0,0,0,.05);
-      transition: transform .3s, box-shadow .3s;
-      border-top: 2px solid transparent;
-    }
-    .exp-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.09); border-top-color: var(--gold); }
-    .exp-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-    .exp-title { font-size: 19px; font-weight: 700; }
-    .exp-co { font-size: 13.5px; color: var(--gray); }
-    .exp-date { background: var(--cream-mid); color: var(--gray); padding: 5px 13px; border-radius: 100px; font-size: 11.5px; white-space: nowrap; }
-    .chip-row.sm { gap: 5px; margin: 10px 0 14px; }
-    .chip.sm { font-size: 11px; padding: 4px 11px; }
-    .exp-ul { list-style: none; }
-    .exp-ul li {
-      font-size: 13.5px; color: var(--gray); line-height: 1.7;
-      padding-left: 16px; position: relative; margin-bottom: 8px;
-    }
-    .exp-ul li::before { content: '—'; position: absolute; left: 0; color: var(--gray-light); font-size: 11px; top: 4px; }
 
-    /* ─── PROJECTS ─── */
-    .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 20px; }
-    .pcard {
-      background: var(--white); border-radius: 18px;
-      padding: 30px; box-shadow: 0 2px 20px rgba(0,0,0,.05);
-      display: flex; flex-direction: column;
-      transition: transform .3s, box-shadow .3s;
-      position: relative; overflow: hidden;
-    }
-    .pcard::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 2px;
-      background: var(--gold);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .3s;
-    }
-    .pcard:hover { transform: translateY(-5px); box-shadow: 0 20px 52px rgba(0,0,0,.1); }
-    .pcard:hover::before { transform: scaleX(1); }
-
-    .p-badge {
+    .skill-token {
       display: inline-block;
-      font-size: 10px; font-weight: 800; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--black);
-      background: var(--cream-mid); padding: 4px 10px; border-radius: 5px;
-      margin-bottom: 14px; border-left: 2px solid var(--gold);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 3px 9px;
+      margin: 0 6px 6px 0;
+      border: 1px solid var(--rule-hairline);
+      background: var(--bg-elevated);
     }
-    .p-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-    .p-ctx { font-size: 11.5px; color: var(--gray-light); font-weight: 500; margin-bottom: 12px; }
-    .p-desc { font-size: 13.5px; color: var(--gray); line-height: 1.65; flex-grow: 1; margin-bottom: 18px; }
-    .p-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
-    .p-tag { font-size: 11px; font-weight: 500; color: var(--gray); background: var(--cream-mid); padding: 3px 9px; border-radius: 100px; }
 
-    /* ─── AWARDS ─── */
-    .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-    .acard {
-      background: var(--white); border-radius: 18px;
-      padding: 28px; box-shadow: 0 2px 20px rgba(0,0,0,.05);
-      transition: transform .3s, box-shadow .3s;
-      text-decoration: none; color: inherit; display: block;
-      border-left: 2px solid transparent;
+    .discipline-box {
+      border: 1.5px solid var(--rule-strong);
+      background: var(--bg-elevated);
+      padding: 32px;
     }
-    .acard:hover { transform: translateY(-4px); box-shadow: 0 16px 44px rgba(0,0,0,.09); border-left-color: var(--gold); }
-    .a-place {
+
+    .disc-item {
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--rule-hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .disc-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .disc-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .disc-detail {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    /* ─── COLOPHON / CONTACT ─── */
+    .colophon {
+      padding: 96px 0 64px;
+      background: var(--bg-secondary);
+    }
+
+    .colophon-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 32px;
+      padding-bottom: 64px;
+      border-bottom: 1.5px solid var(--rule-strong);
+    }
+
+    .colophon-left {
+      grid-column: span 8;
+    }
+
+    .colophon-heading {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5.5vw, 72px);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .colophon-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .direct-mail {
+      font-family: var(--font-mono);
+      font-size: clamp(16px, 2.2vw, 26px);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 4px;
       display: inline-block;
-      font-size: 10px; font-weight: 800; letter-spacing: 2px;
-      text-transform: uppercase; padding: 5px 12px; border-radius: 100px;
-      margin-bottom: 16px;
-    }
-    .a-place.gold { background: #F0E6C8; color: #7A5C00; }
-    .a-place.silver { background: #EAEAEA; color: #444; }
-    .a-place.mention { background: var(--cream-mid); color: var(--gray); }
-    .a-title { font-size: 15.5px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-    .a-event { font-size: 12.5px; color: var(--gray); margin-bottom: 6px; }
-    .a-sub { font-size: 12px; color: var(--gray-light); line-height: 1.5; }
-
-    /* ─── IMPACT ─── */
-    .impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    .impact-cards {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
-    }
-    .icard {
-      background: var(--white); border-radius: 18px;
-      padding: 28px; box-shadow: 0 2px 20px rgba(0,0,0,.05);
-      text-align: center; border-top: 2px solid var(--gold);
-    }
-    .icard-num { font-size: 28px; font-weight: 800; color: var(--gold); display: block; }
-    .icard-lbl { font-size: 12px; font-weight: 600; color: var(--gray); margin-top: 4px; }
-
-    /* ─── PROGRAMS ─── */
-    .prog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-    .prog-card {
-      background: var(--white); border-radius: 18px;
-      padding: 30px; box-shadow: 0 2px 20px rgba(0,0,0,.05);
-      transition: transform .3s, box-shadow .3s;
-      border-top: 2px solid transparent;
-      position: relative;
-    }
-    .prog-card:hover { transform: translateY(-4px); box-shadow: 0 16px 44px rgba(0,0,0,.09); border-top-color: var(--gold); }
-    .prog-badge { display: inline-block; background: var(--cream-mid); color: var(--gold); padding: 4px 12px; border-radius: 100px; font-size: 10px; font-weight: 700; margin-bottom: 12px; }
-    .prog-yr { font-size: 11px; font-weight: 600; color: var(--gray); letter-spacing: 1px; margin-bottom: 6px; }
-    .prog-name { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
-    .prog-org { font-size: 12.5px; color: var(--gold); margin-bottom: 10px; }
-    .prog-desc { font-size: 13.5px; color: var(--gray); line-height: 1.65; }
-
-    /* ─── SKILLS ─── */
-    .skills-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .scat { background: var(--white); border-radius: 18px; padding: 28px; box-shadow: 0 2px 20px rgba(0,0,0,.04); }
-    .scat-title {
-      font-size: 10.5px; font-weight: 800; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--gray); margin-bottom: 16px;
-    }
-    .stags { display: flex; flex-wrap: wrap; gap: 7px; }
-    .stag {
-      background: var(--cream-mid); color: var(--black-2);
-      padding: 7px 14px; border-radius: 100px;
-      font-size: 12.5px; font-weight: 500;
-      transition: background .2s, color .2s; cursor: default;
-    }
-    .stag:hover { background: var(--black); color: var(--white); }
-
-    /* ─── CONTACT ─── */
-    .contact-section { background: var(--black-2); }
-    .contact-inner { max-width: 640px; margin: 0 auto; text-align: center; }
-    .contact-section h2 { color: var(--white); margin-bottom: 20px; }
-    .contact-sub { font-size: 16.5px; color: rgba(255,255,255,.45); line-height: 1.75; margin-bottom: 48px; }
-    .contact-links { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 44px; }
-    .cl {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
-      color: var(--white); padding: 11px 22px; border-radius: 100px;
-      text-decoration: none; font-size: 13.5px; font-weight: 500;
-      transition: background .2s, transform .2s;
-    }
-    .cl:hover { background: rgba(255,255,255,.13); transform: translateY(-2px); }
-    .cl svg { width: 14px; height: 14px; fill: currentColor; }
-    .contact-email {
-      font-size: 21px; font-weight: 700; color: var(--white);
-      text-decoration: none; border-bottom: 2px solid rgba(255,255,255,.2);
-      padding-bottom: 3px; transition: border-color .2s;
-    }
-    .contact-email:hover { border-color: var(--white); }
-
-    footer {
-      background: var(--black-2); border-top: 1px solid rgba(255,255,255,.07);
-      padding: 20px 32px; text-align: center;
-      color: rgba(255,255,255,.25); font-size: 12px;
+      margin-top: 8px;
+      transition: color 0.2s ease;
     }
 
-    /* ─── ANIMATIONS ─── */
-    .rv {
-      opacity: 0; transform: translateY(26px);
-      transition: opacity .7s cubic-bezier(.25,.46,.45,.94), transform .7s cubic-bezier(.25,.46,.45,.94);
+    .direct-mail:hover {
+      color: var(--accent);
     }
-    .rv.in { opacity: 1; transform: translateY(0); }
-    .d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
-    .d4{transition-delay:.32s} .d5{transition-delay:.40s} .d6{transition-delay:.48s}
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero-photo-col { order: -1; max-width: 300px; margin: 0 auto; }
-      .about-grid { grid-template-columns: 1fr; }
-      .skills-layout { grid-template-columns: repeat(2,1fr); }
-      .impact-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .nav-burger { display: block; }
-      .section { padding: 72px 0; }
+    .colophon-right {
+      grid-column: span 4;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 14px;
     }
-    @media (max-width: 600px) {
-      .proj-grid { grid-template-columns: 1fr; }
-      .awards-grid { grid-template-columns: 1fr; }
-      .skills-layout { grid-template-columns: 1fr; }
-      .prog-grid { grid-template-columns: 1fr; }
-      .impact-cards { grid-template-columns: 1fr; }
+
+    .contact-ledger-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule-hairline);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .colophon-bottom {
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── RESTRAINED PAGE-LOAD & SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE BREAKPOINTS ─── */
+    @media (max-width: 1024px) {
+      .hero-main {
+        grid-column: span 12;
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid var(--rule-hairline);
+      }
+      .hero-specimen {
+        grid-column: span 12;
+        padding-left: 0;
+        max-width: 460px;
+      }
+      .ledger-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .ledger-cell:nth-child(3) {
+        border-right: none;
+      }
+      .ledger-cell:nth-child(-n+3) {
+        border-bottom: 1px solid var(--rule-hairline);
+      }
+      .section-header-grid > div {
+        grid-column: span 12 !important;
+      }
+      .dossier-essay,
+      .dossier-sidebar {
+        grid-column: span 12;
+        border-right: none;
+        padding-right: 0;
+      }
+      .inv-index-col,
+      .inv-body-col,
+      .inv-spec-col {
+        grid-column: span 12;
+        border-right: none;
+        border-bottom: 1px solid var(--rule-hairline);
+      }
+      .paper-item {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .paper-supervision {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px dashed var(--rule-hairline);
+        padding-top: 12px;
+      }
+      .books-spread {
+        grid-template-columns: 1fr;
+      }
+      .tenure-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .civic-narrative,
+      .civic-dispatch {
+        grid-column: span 12;
+      }
+      .civic-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gazette-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .dual-ledger {
+        grid-template-columns: 1fr;
+      }
+      .colophon-left,
+      .colophon-right {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        border-bottom: 1.5px solid var(--rule-strong);
+        flex-direction: column;
+        padding: 20px var(--gutter);
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-burger {
+        display: inline-block;
+      }
+      .ledger-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .tenure-points {
+        grid-template-columns: 1fr;
+      }
+      .gazette-grid {
+        grid-template-columns: 1fr;
+      }
+      .grade-ledger {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#home" class="nav-logo">Prerna Singhal</a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#awards">Awards</a></li>
-      <li><a href="#impact">Impact</a></li>
-      <li><a href="#programs">Programs</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu">
-      <svg width="22" height="22" fill="none" viewBox="0 0 22 22">
-        <path d="M3 6h16M3 11h16M3 16h16" stroke="#0C0C0C" stroke-width="1.6" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </div>
-</nav>
+  <!-- ═══ TOP MASTHEAD ═══ -->
+  <header class="masthead" id="top">
+    <div class="masthead-meta">
+      <div class="shell masthead-meta-inner">
+        <span>MONOGRAPH &amp; DOSSIER · VOL. IV</span>
+        <span>18.5204° N, 73.8567° E — PUNE, MAHARASHTRA, IN</span>
+        <span class="status-indicator">
+          <span class="status-dot"></span>
+          DIANA AWARD ’26 · REAKON COFOUNDER · HEAD GIRL
+        </span>
+      </div>
+    </div>
+    <div class="shell nav-bar">
+      <a href="#top" class="brand-mark">
+        <span class="brand-name">Prerna Singhal</span>
+        <span class="brand-index">[INDEX 01–07]</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#dossier">01. Dossier</a></li>
+        <li><a href="#systems">02. Inventions</a></li>
+        <li><a href="#research">03. Research &amp; Books</a></li>
+        <li><a href="#tenure">04. Tenure</a></li>
+        <li><a href="#civic">05. Viksit Youth</a></li>
+        <li><a href="#gazette">06. Laurels</a></li>
+        <li><a href="#disciplines">07. Apparatus</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="theme-btn" id="theme-toggle" type="button" aria-label="Switch color mode">Obsidian Plate</button>
+        <button class="nav-burger" id="nav-burger" type="button" aria-label="Menu">INDEX</button>
+      </div>
+    </div>
+  </header>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero" id="home">
-  <div class="container">
-    <div class="hero-grid">
+  <!-- ═══ HERO EDITORIAL SPREAD ═══ -->
+  <section class="hero">
+    <div class="shell">
+      <div class="hero-spread">
 
-      <div class="hero-text">
-        <p class="hero-eyebrow">Computer Science · Empros International School · Maharashtra, India</p>
-        <h1 class="hero-name">Prerna<br>Singhal</h1>
-        <p class="hero-bio">Builder of agentic AI systems, multilingual companions, and healthcare platforms. Head Girl · CS Club President · ISRO YUVIKA Scholar · 4× Published Author.</p>
-        <div class="hero-stats">
+        <div class="hero-main reveal visible">
           <div>
-            <span class="hstat-n">1,500<span style="font-size:0.7em">+</span></span>
-            <span class="hstat-l">Monthly Active Users</span>
+            <div class="kicker">Systems Builder · Published Researcher · Patented Inventor</div>
+            <h1 class="hero-display">
+              Prerna<br><em>Singhal.</em>
+            </h1>
+            <p class="hero-lead">
+              I build voice companions for senior citizens across 68 care homes, edge-vision hardware for Indian highways, and multi-layer memory architectures for autonomous AI agents.
+            </p>
+            <p class="hero-subcopy">
+              Currently Head Girl and Computer Science Society President at Empros International School in Pune, Cofounder at Reakon Pvt. Ltd., ISRO YUVIKA National Scholar (Top 0.01%), and recipient of The Diana Award (2026). My work sits where rigorous computer science meets unvarnished human need.
+            </p>
+          </div>
+
+          <div class="hero-cta-row">
+            <a href="#systems" class="btn-sharp primary">Examine Inventions ↓</a>
+            <a href="#research" class="btn-sharp secondary">Read Research &amp; Books</a>
+            <a href="mailto:prernasinghal14@gmail.com" class="btn-sharp secondary">prernasinghal14@gmail.com</a>
+
+            <div class="social-strip">
+              <a href="https://www.linkedin.com/in/prerna-singhal-b4074b282/" target="_blank" rel="noopener" class="social-sq" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="https://x.com/singhalprern" target="_blank" rel="noopener" class="social-sq" aria-label="X / Twitter">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="tel:+919373350398" class="social-sq" aria-label="Phone">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-specimen reveal visible">
+          <div>
+            <div class="specimen-header">
+              <span>FIG. 01 — PORTRAIT</span>
+              <span>ARCHIVE PUNE // 2026</span>
+            </div>
+            <div class="portrait-stage">
+              <div class="photo-frame">
+                <img src="WhatsApp Image 2026-03-25 at 6.58.29 AM (1).jpeg" alt="Prerna Singhal"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="photo-initials" style="display:none">PS</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="specimen-plaque">
+            <div class="plaque-row">
+              <span class="plaque-key">Honour</span>
+              <span class="plaque-val">The Diana Award (2026) &amp; 18 Under 18</span>
+            </div>
+            <div class="plaque-row">
+              <span class="plaque-key">Medical Citation</span>
+              <span class="plaque-val">AIIMS Delhi Invited Panelist &amp; Gold Shield</span>
+            </div>
+            <div class="plaque-row">
+              <span class="plaque-key">Space Science</span>
+              <span class="plaque-val">ISRO YUVIKA Top 52 Nationally (0.01%)</span>
+            </div>
+            <div class="plaque-row">
+              <span class="plaque-key">Intellectual Property</span>
+              <span class="plaque-val">Patented Edge-AI Hardware (PashuPran)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- AUDITED METRICS LEDGER -->
+      <div class="ledger-strip reveal">
+        <div class="ledger-cell">
+          <span class="ledger-index">01 // Active Deployment</span>
+          <div class="ledger-figure">1,500<sup>+</sup></div>
+          <span class="ledger-caption">Monthly senior users on Aasha across 68 old-age homes</span>
+        </div>
+        <div class="ledger-cell">
+          <span class="ledger-index">02 // Venture Scale</span>
+          <div class="ledger-figure">58<sup>B2B</sup></div>
+          <span class="ledger-caption">Businesses &amp; 12 pilot CAs operating profitably on Reakon</span>
+        </div>
+        <div class="ledger-cell">
+          <span class="ledger-index">03 // Academic Output</span>
+          <div class="ledger-figure">4 + 2</div>
+          <span class="ledger-caption">Published research papers &amp; 2 authored STEM books</span>
+        </div>
+        <div class="ledger-cell">
+          <span class="ledger-index">04 // Edge Hardware</span>
+          <div class="ledger-figure">87<sup>%</sup></div>
+          <span class="ledger-caption">Spatial anomaly accuracy in patented PashuPran device</span>
+        </div>
+        <div class="ledger-cell">
+          <span class="ledger-index">05 // Civic Mobilization</span>
+          <div class="ledger-figure">4,500<sup>+</sup></div>
+          <span class="ledger-caption">Elders assisted &amp; 75 animal shelters aided via Viksit Youth</span>
+        </div>
+        <div class="ledger-cell">
+          <span class="ledger-index">06 // Ecosystem</span>
+          <div class="ledger-figure">2,500<sup>+</sup></div>
+          <span class="ledger-caption">Student builders convened at Hack Empross 0.1</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 01: BIOGRAPHY & ACADEMIC DOSSIER ═══ -->
+  <section class="monograph-section" id="dossier">
+    <div class="shell">
+      <div class="section-header-grid reveal">
+        <div class="sec-meta-col">
+          <span class="sec-num">SECTION 01 // BIOGRAPHY</span>
+          <span class="sec-taxonomy">ETHOS &amp; SCHOLASTIC RECORD</span>
+        </div>
+        <div class="sec-title-col">
+          <h2 class="sec-heading">Theory means little until it <em>survives</em> contact with reality.</h2>
+        </div>
+        <div class="sec-note-col">
+          From ornithology field observations at dusk to verifiable memory deletion in LLM agents.
+        </div>
+      </div>
+
+      <div class="dossier-grid">
+        <div class="dossier-essay reveal">
+          <p class="dropcap-p">
+            Most student portfolios read like a checklist of rehearsals for the real world. I prefer building things that live in it right now. When I noticed how isolation erodes cognitive health in senior care facilities across Maharashtra, I didn't stop at a slide deck—I wrote the voice pipelines, memory layers, and multilingual interfaces for Aasha, and deployed it across 68 old-age homes.
+          </p>
+          <p class="essay-p">
+            When my dog Coco passed away in a road accident, grief turned into two years of hardware engineering alongside Dr. Arvind Sharma—training computer vision models on edge processors to build PashuPran, a spatial anomaly and threat detection device now patented and placed with traffic police stations to protect animals and pedestrians on Indian roads.
+          </p>
+          <p class="essay-p">
+            My curiosity refuses to stay in a single lane. I have spent mornings examining continuous interstitial glucose monitors for Type 1 diabetes patients (placing 1st as the sole freshman presenter at the Mid-Atlantic Regional Conference in Virginia), afternoons studying the roosting behavior of Indian Mynas against twilight lux levels with a 37-year Zoological Survey of India veteran, and nights testing verifiable memory unlearning in multi-layer LLM agents or reading Sanskrit verses alongside modern scientific frameworks.
+          </p>
+
+          <blockquote class="editorial-pullquote">
+            <p>“Selected among the top 5 students across India as an Invited Panelist at AIIMS Delhi—awarded a Gold Shield for advancing youth-led AI innovation in clinical and geriatric mental care.”</p>
+            <cite>— AIIMS DELHI &amp; DELHI UNIVERSITY FELICITATION</cite>
+          </blockquote>
+        </div>
+
+        <div class="dossier-sidebar reveal">
+          <div class="archival-box">
+            <div class="box-header">
+              <span>SCHOLASTIC ARCHIVE</span>
+              <span>2021 — 2027</span>
+            </div>
+
+            <div class="edu-entry">
+              <div class="edu-school">Empros International School</div>
+              <div class="edu-meta">PUNE, MAHARASHTRA · CLASS XI &amp; XII · GRADUATING MAY 2027</div>
+              <p class="edu-details">
+                <strong>Head Girl</strong> · <strong>Innovator of the Year</strong> · <strong>President, CS Society</strong> · <strong>Editor-in-Chief, School Newspaper</strong> · Technical Head of Official School Website · Founded Interschool Hackathon <em>Hack Empross 0.1</em> (2,500+ participants).<br>
+                <em>Coursework:</em> Computer Science, Physics, Chemistry, Mathematics, English.
+              </p>
+            </div>
+
+            <div class="edu-entry">
+              <div class="edu-school">Kissan International School</div>
+              <div class="edu-meta">AHMEDNAGAR, MAHARASHTRA · CLASS IX &amp; X</div>
+              <p class="edu-details">
+                <strong>Vice Head Girl</strong> · <strong>Founder &amp; President, “Ramanujan Circle” Maths Club</strong> · <strong>Young Technopreneur Award (Class X)</strong> · <strong>Outstanding Academic Award (Class IX)</strong>.<br>
+                <em>Coursework:</em> Computer Science, Physics, Chemistry, Math, Biology, Social Science, English, Hindi.
+              </p>
+            </div>
+
+            <div class="grade-ledger">
+              <div class="grade-cell">
+                <span class="grade-yr">CLASS IX</span>
+                <span class="grade-val">98%</span>
+              </div>
+              <div class="grade-cell">
+                <span class="grade-yr">CLASS X</span>
+                <span class="grade-val">90%</span>
+              </div>
+              <div class="grade-cell">
+                <span class="grade-yr">CLASS XI</span>
+                <span class="grade-val">97%</span>
+              </div>
+              <div class="grade-cell">
+                <span class="grade-yr">CLASS XII (PRED.)</span>
+                <span class="grade-val">95%+</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="archival-box invert">
+            <div class="box-header">
+              <span>INSTITUTIONAL LEADERSHIP</span>
+              <span>ACTIVE ROLES</span>
+            </div>
+            <p style="font-size:14px;line-height:1.7;opacity:0.9;">
+              <strong>01. Cofounder, Reakon Pvt. Ltd.</strong> — Leading product &amp; CA acquisition across 4 metro hubs.<br><br>
+              <strong>02. Founder, Viksit Youth</strong> — Directing student chapters across Maharashtra &amp; Uttarakhand.<br><br>
+              <strong>03. Head Girl &amp; CS President</strong> — Directing student governance, code labs, and school-wide engineering pipelines.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 02: ENGINEERED SYSTEMS & PATENTED INVENTIONS ═══ -->
+  <section class="monograph-section" id="systems">
+    <div class="shell">
+      <div class="section-header-grid reveal">
+        <div class="sec-meta-col">
+          <span class="sec-num">SECTION 02 // APPARATUS</span>
+          <span class="sec-taxonomy">PRODUCTION SYSTEMS &amp; PATENTS</span>
+        </div>
+        <div class="sec-title-col">
+          <h2 class="sec-heading">Engineered systems shipped to <em>hospitals, highways,</em> and care homes.</h2>
+        </div>
+        <div class="sec-note-col">
+          Software and edge hardware evaluated by real users, traffic police, and medical institutions.
+        </div>
+      </div>
+
+      <div class="invention-showcase">
+
+        <!-- 01 AASHA -->
+        <article class="invention-row reveal">
+          <div class="inv-index-col">
+            <div>
+              <div class="inv-serial">SPECIMEN 01 // FLAGSHIP</div>
+              <div class="inv-classification">GERIATRIC VOICE AI &amp; MEMORY</div>
+            </div>
+            <div class="inv-metric-callout">
+              <div class="inv-metric-num">68 Homes</div>
+              <div class="inv-metric-label">1,050–1,500+ Monthly Active Users</div>
+            </div>
+          </div>
+          <div class="inv-body-col">
+            <h3 class="inv-title">Aasha — Multilingual Senior Companion</h3>
+            <div class="inv-subtitle">PYTHON · PERSISTENT MEMORY ARCHITECTURES · VOICE NLP · LOW-LATENCY APIS</div>
+            <p class="inv-desc">
+              Built for senior citizens residing in old-age homes so they can converse freely in their native tongue without judgment, preserving cognitive agility and emotional warmth. Currently scaling from the web/laptop deployment to a dedicated mobile app while engineering aggressive API token-cost reductions.
+            </p>
+            <div class="inv-origin-note">
+              <strong>Clinical Distinction:</strong> Recognized by <strong>AIIMS Delhi</strong> (India’s premier medical institute) and cited in <strong>The Diana Award (2026)</strong> for measurable impact on elderly mental wellness.
+            </div>
+          </div>
+          <div class="inv-spec-col">
+            <div>
+              <div class="spec-group-title">Architecture</div>
+              <ul class="spec-list">
+                <li>Multi-layer episodic memory</li>
+                <li>Vernacular voice-first UI</li>
+                <li>Cost-optimized LLM routing</li>
+                <li>Zero-friction senior ergonomics</li>
+              </ul>
+            </div>
+            <span class="spec-stamp">AIIMS DELHI RECOGNIZED</span>
+          </div>
+        </article>
+
+        <!-- 02 PASHUPRAN -->
+        <article class="invention-row reveal">
+          <div class="inv-index-col">
+            <div>
+              <div class="inv-serial">SPECIMEN 02 // PATENTED</div>
+              <div class="inv-classification">EDGE COMPUTER VISION HARDWARE</div>
+            </div>
+            <div class="inv-metric-callout">
+              <div class="inv-metric-num">87% Acc.</div>
+              <div class="inv-metric-label">Awarded Patent · Police Field Tested</div>
+            </div>
+          </div>
+          <div class="inv-body-col">
+            <h3 class="inv-title">PashuPran — Spatial Anomaly &amp; Threat Device</h3>
+            <div class="inv-subtitle">EDGE AI · REAL-TIME VIDEO &amp; IMAGE PROCESSING · HARDWARE PROTOTYPE</div>
+            <p class="inv-desc">
+              An edge-based spatial anomaly detection and road-threat assessment device engineered over two years under the mentorship of <strong>Dr. Arvind Sharma</strong> (CS Chair at CP University; Ph.D., National Taipei University of Business). Designed to detect stray animals and sudden spatial hazards in real time to prevent fatal road collisions.
+            </p>
+            <div class="inv-origin-note">
+              <strong>Human Origin:</strong> Inspired by the loss of my dog, <strong>Coco</strong>, in a car accident. Featured in regional media coverage and physically distributed to local police stations and traffic police divisions for field assessment.
+            </div>
+          </div>
+          <div class="inv-spec-col">
+            <div>
+              <div class="spec-group-title">Verification</div>
+              <ul class="spec-list">
+                <li>Granted Patent on vision model</li>
+                <li>87%+ real-time detection accuracy</li>
+                <li>2-year R&amp;D cycle</li>
+                <li>Traffic police deployment</li>
+              </ul>
+            </div>
+            <span class="spec-stamp">PATENT GRANTED</span>
+          </div>
+        </article>
+
+        <!-- 03 AAROLIC -->
+        <article class="invention-row reveal">
+          <div class="inv-index-col">
+            <div>
+              <div class="inv-serial">SPECIMEN 03 // CLINICAL</div>
+              <div class="inv-classification">GEN-AI HEALTHCARE ECOSYSTEM</div>
+            </div>
+            <div class="inv-metric-callout">
+              <div class="inv-metric-num">IIT Bombay</div>
+              <div class="inv-metric-label">Techfest Invited Showcase</div>
+            </div>
+          </div>
+          <div class="inv-body-col">
+            <h3 class="inv-title">Aarolic — Clinical Pre-Diagnosis &amp; Triage App</h3>
+            <div class="inv-subtitle">PYTHON · OBJECTIVE-C / iOS · JAVA / ANDROID · OPENAI APIS · FIGMA</div>
+            <p class="inv-desc">
+              Co-designed directly with practicing physicians to streamline pre-diagnosis, structured symptom intake, e-prescriptions, and clinic-side analytics. Built with a strict focus on clinical UX so doctors spend less time on clerical triage and more time with patients.
+            </p>
+            <div class="inv-origin-note">
+              <strong>Exhibition:</strong> Invited to exhibit at <strong>Techfest, IIT Bombay</strong>—Asia’s largest science and technology festival.
+            </div>
+          </div>
+          <div class="inv-spec-col">
+            <div>
+              <div class="spec-group-title">Capabilities</div>
+              <ul class="spec-list">
+                <li>Automated pre-diagnosis intake</li>
+                <li>Digital prescription workflows</li>
+                <li>Cross-platform mobile clients</li>
+                <li>Doctor-validated product fit</li>
+              </ul>
+            </div>
+            <span class="spec-stamp">TECHFEST IIT BOMBAY</span>
+          </div>
+        </article>
+
+        <!-- 04 FEMALE FINANCY & HACK EMPROSS -->
+        <article class="invention-row reveal">
+          <div class="inv-index-col">
+            <div>
+              <div class="inv-serial">SPECIMEN 04 // PLATFORMS</div>
+              <div class="inv-classification">FINTECH &amp; ECOSYSTEM ARCHITECTURE</div>
+            </div>
+            <div class="inv-metric-callout">
+              <div class="inv-metric-num">2,500+</div>
+              <div class="inv-metric-label">Hackathon Builders Convened</div>
+            </div>
+          </div>
+          <div class="inv-body-col">
+            <h3 class="inv-title">Female Financy &amp; Hack Empross 0.1</h3>
+            <div class="inv-subtitle">JAVASCRIPT · WEB ARCHITECTURE · COMMUNITY SYSTEMS</div>
+            <p class="inv-desc">
+              <strong>Female Financy:</strong> Led the capstone engineering group as a Kode With Klossy Scholar (Top 2.3% selection globally) to build a web application demystifying personal finance, compounding, and capital literacy for young women.<br><br>
+              <strong>Hack Empross 0.1 / Hack Kissan 0.1:</strong> Founded and architected our region’s flagship interschool hackathons from the ground up—mobilizing 2,500+ student participants, industry mentors, and judging panels.
+            </p>
+          </div>
+          <div class="inv-spec-col">
+            <div>
+              <div class="spec-group-title">Scope</div>
+              <ul class="spec-list">
+                <li>Kode With Klossy NY Capstone</li>
+                <li>Full-stack HTML/CSS/JS</li>
+                <li>2,500+ student competitors</li>
+                <li>End-to-end event engineering</li>
+              </ul>
+            </div>
+            <span class="spec-stamp">TOP 2.3% COHORT</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 03: PUBLISHED RESEARCH & AUTHORED BOOKS ═══ -->
+  <section class="monograph-section" id="research">
+    <div class="shell">
+      <div class="section-header-grid reveal">
+        <div class="sec-meta-col">
+          <span class="sec-num">SECTION 03 // SCHOLARSHIP</span>
+          <span class="sec-taxonomy">4 PAPERS · 2 PUBLISHED BOOKS</span>
+        </div>
+        <div class="sec-title-col">
+          <h2 class="sec-heading">Empirical inquiries across <em>AI memory,</em> biotech, ornithology, and Sanskrit.</h2>
+        </div>
+        <div class="sec-note-col">
+          Conducted under senior scientists from Aix-Marseille, Zoological Survey of India, and RIT.
+        </div>
+      </div>
+
+      <div class="papers-table">
+
+        <!-- PAPER 1 -->
+        <article class="paper-item reveal">
+          <div>
+            <span class="paper-id">PAPER // 01</span>
+            <span class="paper-domain">BIOTECHNOLOGY · 2023–2024</span>
           </div>
           <div>
-            <span class="hstat-n">68</span>
-            <span class="hstat-l">Old Age Homes</span>
+            <h3 class="paper-title">Analysis of Non-Invasive Devices &amp; Techniques Involved in Continuous Monitoring of Interstitial Glucose of Patients with Type 1 Diabetes</h3>
+            <p class="paper-abstract">
+              Comparative clinical and engineering investigation of Continuous Glucose Monitoring (CGM) modalities, evaluating sensor lag, patient comfort, and non-invasive optical/transdermal alternatives for Type 1 diabetes management.
+            </p>
+          </div>
+          <div class="paper-supervision">
+            <span class="paper-mentor-label">Research Advisor</span>
+            <span class="paper-mentor-name">Dr. Roshan Padmanabhan</span>
+            <span class="paper-mentor-affil">Senior Bioinformatics Scientist · Ph.D. in Infectious Disease &amp; Bioinformatics, Aix-Marseille University, France</span>
+            <span class="paper-laurel">1st Place in Biotech · Randolph College MARC (Nov 2024, Sole Freshman)</span>
+          </div>
+        </article>
+
+        <!-- PAPER 2 -->
+        <article class="paper-item reveal">
+          <div>
+            <span class="paper-id">PAPER // 02</span>
+            <span class="paper-domain">AGENTIC AI · MEMORY</span>
           </div>
           <div>
-            <span class="hstat-n">4</span>
-            <span class="hstat-l">Publications</span>
+            <h3 class="paper-title">Verifiable Deletion in Multi-Layer Memory Architectures for LLM Agents</h3>
+            <p class="paper-abstract">
+              Investigates deterministic unlearning and verifiable state erasure across short-term, episodic, and vector-store memory tiers in autonomous Large Language Model agents—ensuring privacy compliance without catastrophic forgetting.
+            </p>
+          </div>
+          <div class="paper-supervision">
+            <span class="paper-mentor-label">Research Advisor</span>
+            <span class="paper-mentor-name">Dr. Abhay Bhatia</span>
+            <span class="paper-mentor-affil">Ph.D., KLUST Malaysia · Head of Department, Roorkee Institute of Technology</span>
+            <span class="paper-laurel">Published Research · Multi-Agent Verification</span>
+          </div>
+        </article>
+
+        <!-- PAPER 3 -->
+        <article class="paper-item reveal">
+          <div>
+            <span class="paper-id">PAPER // 03</span>
+            <span class="paper-domain">ORNITHOLOGY · 2021–2022</span>
           </div>
           <div>
-            <span class="hstat-n">2</span>
-            <span class="hstat-l">Books Published</span>
+            <h3 class="paper-title">Roosting Behavior and Population of Indian Mynas &amp; its Correlation with Sunset (Light Intensity) and Time of Arrival</h3>
+            <p class="paper-abstract">
+              Field ethology study quantifying communal roosting arrival curves of <em>Acridotheres tristis</em> relative to ambient twilight illuminance and solar angle across seasonal shifts in Pune.
+            </p>
           </div>
-        </div>
-        <div class="hero-actions">
-          <a href="https://www.linkedin.com/in/prerna-singhal-b4074b282/" target="_blank" rel="noopener" class="btn btn-fill">
-            View LinkedIn
-            <svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M2 2h8v8M2 10L10 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </a>
-          <a href="#projects" class="btn btn-ghost">See Projects</a>
-        </div>
-        <div class="hero-socials">
-          <a href="https://www.linkedin.com/in/prerna-singhal-b4074b282/" target="_blank" rel="noopener" class="si" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <a href="https://x.com/singhalprern" target="_blank" rel="noopener" class="si" aria-label="X / Twitter">
-            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="mailto:prernasinghal14@gmail.com" class="si" aria-label="Email">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-          </a>
-        </div>
-      </div>
+          <div class="paper-supervision">
+            <span class="paper-mentor-label">Research Advisor</span>
+            <span class="paper-mentor-name">Dr. Anil Mahabal</span>
+            <span class="paper-mentor-affil">Additional Director / Scientist ‘F’ (37 Years Tenure), Zoological Survey of India</span>
+            <span class="paper-laurel">IISER Pune Regional Award · INSEF Top 1% Nationally</span>
+          </div>
+        </article>
 
-      <div class="hero-photo-col">
-        <div class="photo-wrap">
-          <div class="photo-frame">
-            <img src="WhatsApp Image 2026-03-25 at 6.58.29 AM (1).jpeg" alt="Prerna Singhal"
-                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="photo-initials" style="display:none">PS</div>
-          </div>
-          <div class="photo-badge-wrap">
-            <div class="pbadge">AIIMS Delhi<span>· Recognized</span></div>
-            <div class="pbadge">ISRO YUVIKA<span>· Top 50</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ TICKER ═══ -->
-<div class="ticker-section">
-  <div class="ticker-track">
-    <div class="ticker-item">Aasha Multilingual Companion<span class="ticker-dot"></span></div>
-    <div class="ticker-item">1,500+ Monthly Active Users<span class="ticker-dot"></span></div>
-    <div class="ticker-item">AIIMS Delhi Recognition<span class="ticker-dot"></span></div>
-    <div class="ticker-item">4 Research Publications<span class="ticker-dot"></span></div>
-    <div class="ticker-item">2 Published Books<span class="ticker-dot"></span></div>
-    <div class="ticker-item">ISRO YUVIKA Scholar<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Head Girl · CS Club President<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Hack Kissan 2,500+ Participants<span class="ticker-dot"></span></div>
-    <!-- duplicate -->
-    <div class="ticker-item">Aasha Multilingual Companion<span class="ticker-dot"></span></div>
-    <div class="ticker-item">1,500+ Monthly Active Users<span class="ticker-dot"></span></div>
-    <div class="ticker-item">AIIMS Delhi Recognition<span class="ticker-dot"></span></div>
-    <div class="ticker-item">4 Research Publications<span class="ticker-dot"></span></div>
-    <div class="ticker-item">2 Published Books<span class="ticker-dot"></span></div>
-    <div class="ticker-item">ISRO YUVIKA Scholar<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Head Girl · CS Club President<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Hack Kissan 2,500+ Participants<span class="ticker-dot"></span></div>
-  </div>
-</div>
-
-<!-- ═══ ABOUT ═══ -->
-<section class="section" id="about">
-  <div class="container">
-    <div class="sec-head rv">
-      <div class="sec-label">Background</div>
-      <h2 class="sec-title">About <em>Me</em></h2>
-    </div>
-    <div class="about-grid">
-      <div>
-        <div class="card rv" style="margin-bottom:20px">
-          <p class="bio-text">I'm a student at Empros International School — serving as Head Girl and President of the CS Club. I build AI systems that actually ship to real users: multilingual voice companions for elderly care, end-to-end healthcare networks, and agentic tools that automate complex workflows.</p>
-          <p style="font-size:13.5px;color:var(--gray);line-height:1.8;margin-bottom:20px">My technical obsession spans agentic AI architectures, memory systems, model fine-tuning, and system design. Recognized by AIIMS Delhi — India's #1 medical institute — for healthcare AI impact, and shortlisted among India's top 50 students by ISRO for the prestigious YUVIKA program.</p>
-          <p style="font-size:13.5px;color:var(--gray);line-height:1.8">I write research papers, publish books, win international olympiads, and run a non-profit — often simultaneously. The best builders aren't just technically strong; they deeply understand the humans their systems serve.</p>
-          <div class="quote-bar" style="margin-top:20px">
-            <strong>AIIMS Delhi Recognition</strong><br>
-            India's #1 medical institute recognized Aasha project for measurable impact on elderly mental wellness.
-          </div>
-        </div>
-        <div class="card card-dark rv d2">
-          <p style="font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px">Leadership</p>
-          <div class="lead-row">
-            <div class="lead-icon">
-              <svg viewBox="0 0 16 16"><path d="M8 2L8 14M2 8L14 8" stroke-linecap="round"/></svg>
-            </div>
-            <div>
-              <div class="lead-title">Head Girl</div>
-              <div class="lead-sub">Empros International School · Coordinating school initiatives</div>
-            </div>
-          </div>
-          <div class="lead-row">
-            <div class="lead-icon">
-              <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/></svg>
-            </div>
-            <div>
-              <div class="lead-title">CS Club President</div>
-              <div class="lead-sub">Organizing workshops & mentoring students in software development</div>
-            </div>
-          </div>
-          <div class="lead-row">
-            <div class="lead-icon">
-              <svg viewBox="0 0 16 16"><path d="M3 13a5 5 0 0 1 10 0M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="lead-title">Viksit Youth Founder</div>
-              <div class="lead-sub">Student-led non-profit impacting thousands in the community</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card rv d1">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+        <!-- PAPER 4 -->
+        <article class="paper-item reveal">
           <div>
-            <div style="font-size:19px;font-weight:700;">Empros International School</div>
-            <div style="font-size:13.5px;color:var(--gray);">Senior Secondary</div>
+            <span class="paper-id">PAPER // 04</span>
+            <span class="paper-domain">EPISTEMOLOGY &amp; TEXTS</span>
           </div>
-          <span class="chip dark">Current</span>
-        </div>
-        <div class="chip-row">
-          <span class="chip">Head Girl</span>
-          <span class="chip">CS Club President</span>
-          <span class="chip">Published Author</span>
-        </div>
-        <p style="font-size:13px;color:var(--gray);line-height:1.75;margin-top:14px;margin-bottom:14px">
-          <strong>Key Skills:</strong> Agentic AI · LLM Fine-Tuning · Memory Systems · iOS/Swift · Python/ML · Web Dev · JavaScript · Data Science · Cybersecurity · NLP/Voice
-        </p>
-        <p style="font-size:13px;color:var(--gray);line-height:1.75">
-          <strong>Achievements:</strong> ISRO YUVIKA Top 50 · AIIMS Delhi Recognition · Kode With Klossy Top 2.3% · Girls Who Code Scholar · IISER Top 200 · International Olympiad Gold Medals · 4 Publications · 2 Books
-        </p>
+          <div>
+            <h3 class="paper-title">Sanskrit Scriptures (Ancient Indian History) and Their Scientific Relevance in Modern Science</h3>
+            <p class="paper-abstract">
+              Primary-text hermeneutic study examining cosmological, mathematical, and natural-philosophical formulations across the Vedas and the <em>Bhagavad-Gita</em> in dialogue with modern scientific inquiry.
+            </p>
+          </div>
+          <div class="paper-supervision">
+            <span class="paper-mentor-label">Research Advisor</span>
+            <span class="paper-mentor-name">Dr. Anita Kaushik</span>
+            <span class="paper-mentor-affil">Ph.D. in Sanskrit · Head of Department of Sanskrit, R.O.G. Degree College</span>
+            <span class="paper-laurel">Published Interdisciplinary Monograph</span>
+          </div>
+        </article>
+
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══ EXPERIENCE ═══ -->
-<section class="section bg-mid" id="experience">
-  <div class="container">
-    <div class="sec-head rv">
-      <div class="sec-label">Work</div>
-      <h2 class="sec-title">Experience</h2>
-    </div>
-    <div class="tl">
-
-      <div class="tl-item rv d0">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div>
-              <div class="exp-title">Cofounder</div>
-              <div class="exp-co">Reakon Pvt Ltd · Fintech · Delhi, India</div>
-            </div>
-            <span class="exp-date">Current</span>
+      <!-- AUTHORED BOOKS SPREAD -->
+      <div class="books-spread reveal">
+        <div class="book-folio">
+          <div class="book-spine">
+            <span class="book-spine-num">VOL. I</span>
+            <span class="book-spine-title">Beyond the Helix</span>
+            <span class="book-spine-author">P. SINGHAL</span>
           </div>
-          <ul class="exp-ul" style="margin-top:16px">
-            <li>Operating with 12 pilot CAs and 58 businesses, net profit across client base</li>
-            <li>Received investments from Google, Microsoft, Amazon, and Nvidia</li>
-            <li>Verified CA acquisition and market need across Delhi, Gurugram, Mumbai, Bangalore</li>
-            <li>Featured in Delhi finance magazine for innovative business model</li>
+          <div>
+            <div class="book-meta-tag">PUBLISHED BOOK // COMPUTATIONAL BIOLOGY</div>
+            <h3 class="book-title">Beyond the Helix: Orchestrating Life with Artificial Intelligence in Biology</h3>
+            <p class="book-desc">
+              An interdisciplinary book exploring how machine learning, generative protein modeling, and algorithmic systems are reshaping modern molecular biology and clinical discovery.
+            </p>
+          </div>
+        </div>
+
+        <div class="book-folio">
+          <div class="book-spine">
+            <span class="book-spine-num">VOL. II</span>
+            <span class="book-spine-title">त्रिकोणमिति · Trig</span>
+            <span class="book-spine-author">P. SINGHAL</span>
+          </div>
+          <div>
+            <div class="book-meta-tag">PUBLISHED BOOK // MATHEMATICS</div>
+            <h3 class="book-title">Trigonometry: Height and Distance (त्रिकोणमिति)</h3>
+            <p class="book-desc">
+              A dedicated mathematical volume demystifying trigonometric ratios, angular elevation, and spatial geometry through rigorous visual proofs and applied problem sets.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 04: VENTURE & ENGINEERING TENURE ═══ -->
+  <section class="monograph-section" id="tenure">
+    <div class="shell">
+      <div class="section-header-grid reveal">
+        <div class="sec-meta-col">
+          <span class="sec-num">SECTION 04 // TENURE</span>
+          <span class="sec-taxonomy">VENTURES, ENGINEERING &amp; LABS</span>
+        </div>
+        <div class="sec-title-col">
+          <h2 class="sec-heading">Commercial software, fintech infrastructure, and <em>space research.</em></h2>
+        </div>
+        <div class="sec-note-col">
+          From B2B accounting networks in Delhi to Satish Dhawan Space Centre and Georgia Tech CREATE-X.
+        </div>
+      </div>
+
+      <div class="tenure-list">
+
+        <!-- REAKON -->
+        <div class="tenure-row reveal">
+          <div>
+            <div class="tenure-period">CURRENT</div>
+            <div class="tenure-loc">DELHI, INDIA</div>
+          </div>
+          <div>
+            <div class="tenure-role">Cofounder</div>
+            <div class="tenure-org">Reakon Pvt. Ltd. · FinTech</div>
+          </div>
+          <ul class="tenure-points">
+            <li>Operating live with 12 pilot Chartered Accountants (CAs) and 58 commercial businesses, achieving net profitability across the client base.</li>
+            <li>Backed by credits, grants, and ecosystem investments from Google, Microsoft, Amazon, and Nvidia.</li>
+            <li>Validated B2B acquisition pipelines and market demand across Delhi, Gurugram, Mumbai, and Bengaluru.</li>
+            <li>Profiled in a Delhi finance publication for an unconventional CA-led distribution model.</li>
           </ul>
         </div>
-      </div>
 
-      <div class="tl-item rv d1">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div>
-              <div class="exp-title">Software Engineer</div>
-              <div class="exp-co">VFC Loans Pvt Ltd · Gurugram, India</div>
-            </div>
-            <span class="exp-date">Feb 2025 – May 2026</span>
+        <!-- VFC LOANS -->
+        <div class="tenure-row reveal">
+          <div>
+            <div class="tenure-period">FEB 2025 — MAY 2026</div>
+            <div class="tenure-loc">GURUGRAM, INDIA</div>
           </div>
-          <ul class="exp-ul" style="margin-top:16px">
-            <li>Built iOS app for fast loan approval and access</li>
-            <li>Redesigned website integrations with WhatsApp, email, telecaller CRM</li>
-            <li>Created Contextual AI website agent and documentation agent</li>
-            <li>Built Contextual AI OpenClaw Integration and Agent Composer CLI in Go</li>
+          <div>
+            <div class="tenure-role">Software Engineer</div>
+            <div class="tenure-org">VFC Loans Pvt. Ltd.</div>
+          </div>
+          <ul class="tenure-points">
+            <li>Engineered the native iOS application for rapid credit underwriting, loan approval, and borrower access.</li>
+            <li>Built Contextual AI OpenClaw integration and authored the Agent Composer CLI in Go.</li>
+            <li>Architected a Contextual AI website agent and automated engineering documentation agent.</li>
+            <li>Overhauled core web integrations connecting WhatsApp pipelines, email triggers, and telecaller CRM workflows.</li>
           </ul>
         </div>
-      </div>
 
-      <div class="tl-item rv d2">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div>
-              <div class="exp-title">Intern · Georgia Tech CREATE-X Startup Launch</div>
-              <div class="exp-co">Profitwise Inc · Remotely, USA</div>
-            </div>
-            <span class="exp-date">Aug 2023 – Dec 2024</span>
+        <!-- PROFITWISE / GEORGIA TECH CREATE-X -->
+        <div class="tenure-row reveal">
+          <div>
+            <div class="tenure-period">AUG 2023 — DEC 2024</div>
+            <div class="tenure-loc">REMOTE, USA</div>
           </div>
-          <ul class="exp-ul" style="margin-top:16px">
-            <li>Developed and published official n8n community nodes</li>
-            <li>Designed GTM avenue streams and presented on lead ratios and conversion</li>
-            <li>Designed landing page and dashboard improvements</li>
-            <li>Integrated content, marketing, and animation</li>
+          <div>
+            <div class="tenure-role">Engineering &amp; GTM Intern</div>
+            <div class="tenure-org">Profitwise Inc. · Georgia Tech CREATE-X</div>
+          </div>
+          <ul class="tenure-points">
+            <li>Developed, tested, and published official community nodes for the n8n workflow automation ecosystem.</li>
+            <li>Designed go-to-market conversion streams and presented quantitative lead-ratio analyses to leadership.</li>
+            <li>Redesigned the core landing experience, platform UI enhancements, and motion storytelling assets.</li>
+            <li>Operated within the Georgia Tech CREATE-X Startup Launch cohort environment.</li>
           </ul>
         </div>
-      </div>
 
-      <div class="tl-item rv d3">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div>
-              <div class="exp-title">Head Girl · CS Club President</div>
-              <div class="exp-co">Empros International School</div>
-            </div>
-            <span class="exp-date">Current</span>
+        <!-- ISRO YUVIKA -->
+        <div class="tenure-row reveal">
+          <div>
+            <div class="tenure-period">2024</div>
+            <div class="tenure-loc">SRIHARIKOTA, INDIA</div>
           </div>
-          <ul class="exp-ul" style="margin-top:16px">
-            <li>Leading school as Head Girl — coordinating student initiatives and events</li>
-            <li>Running CS Club, organizing workshops, mentoring junior students</li>
-            <li>Technical Head of school's official website — managing architecture and dev pipeline</li>
+          <div>
+            <div class="tenure-role">YUVIKA National Scholar</div>
+            <div class="tenure-org">ISRO — Satish Dhawan Space Centre</div>
+          </div>
+          <ul class="tenure-points">
+            <li>Selected among the top 52 students nationally (top 0.01% of applicants) for ISRO’s residential space science fellowship.</li>
+            <li>Engaged in 1:1 technical dialogues with astronaut-designates for the Gaganyaan human spaceflight mission and Dr. V. Narayanan.</li>
+            <li>Completed hands-on modules in orbital satellite payloads, launch vehicle propulsion, and ISRO R&amp;D labs.</li>
+            <li>Anchored the national cultural plenary at Satish Dhawan Space Centre.</li>
           </ul>
         </div>
-      </div>
 
-      <div class="tl-item rv d4">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div>
-              <div class="exp-title">YUVIKA Scholar · Top 50 Nationally</div>
-              <div class="exp-co">ISRO — Indian Space Research Organisation</div>
-            </div>
-            <span class="exp-date">2024</span>
+        <!-- GIRLS WHO CODE & KODE WITH KLOSSY -->
+        <div class="tenure-row reveal">
+          <div>
+            <div class="tenure-period">JUL — DEC 2023</div>
+            <div class="tenure-loc">NEW YORK &amp; REMOTE</div>
           </div>
-          <ul class="exp-ul" style="margin-top:16px">
-            <li>Shortlisted among top 50 students nationally for prestigious residential space science program</li>
-            <li>1:1 interaction with astronauts selected for Gaganyaan mission and Dr. V. Narayanan</li>
-            <li>Hands-on exposure to satellite technology, rocket systems, and ISRO's core R&D</li>
+          <div>
+            <div class="tenure-role">Fellow &amp; Capstone Lead</div>
+            <div class="tenure-org">Kode With Klossy &amp; Girls Who Code × Morgan Stanley</div>
+          </div>
+          <ul class="tenure-points">
+            <li>Awarded the selective Kode With Klossy scholarship (Top 2.3% globally); led the team building <em>Female Financy</em>.</li>
+            <li>Completed both the 2-week Summer Immersion and 4-week Self-Paced tracks at Girls Who Code × Morgan Stanley.</li>
+            <li>Trained across full-stack web engineering, data science, and cybersecurity fundamentals.</li>
+            <li>Won the cohort team raffle and mentored directly with Morgan Stanley engineering and finance staff.</li>
           </ul>
         </div>
-      </div>
 
-      <div class="tl-item rv d5">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div>
-              <div class="exp-title">Scholar · Top 2.3%</div>
-              <div class="exp-co">Kode With Klossy · New York, USA</div>
-            </div>
-            <span class="exp-date">Jul – Aug 2023</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 05: CIVIC ARCHITECTURE — VIKSIT YOUTH ═══ -->
+  <section class="monograph-section" id="civic">
+    <div class="shell">
+      <div class="civic-spread reveal">
+        <div class="civic-top">
+          <div class="civic-narrative">
+            <div class="civic-kicker">SECTION 05 // CIVIC FIELDWORK · EST. 2020</div>
+            <h2 class="civic-title">Viksit Youth — <em>“By the youth, for the future.”</em></h2>
+            <p class="civic-copy">
+              I founded Viksit Youth in 2020 with a simple conviction: code alone does not fix a fractured community unless young people also show up in person. What began in Maharashtra has grown into a student-powered non-profit uniting teenagers and young adults across cities to tackle elder isolation, animal welfare, environmental sanitation, and public-school computer science literacy.
+            </p>
+            <p class="civic-copy">
+              Beyond raising ₹1,25,000 in direct grassroots funding for old-age homes and stray animal shelters, we design structured computer science curricula and teach in person at government and blind schools across Pune and Dehradun—producing a documented 48% improvement in student CS performance.
+            </p>
           </div>
-          <ul class="exp-ul" style="margin-top:16px">
-            <li>Awarded scholarship for intensive STEAM program for women and non-binary students</li>
-            <li>Led capstone group project — built "Female Financy" in HTML, CSS, JavaScript from ground up</li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="tl-item rv d6">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div>
-              <div class="exp-title">Girls Who Code Scholar</div>
-              <div class="exp-co">Morgan Stanley · Summer Immersion</div>
-            </div>
-            <span class="exp-date">Aug – Dec 2023</span>
+          <div class="civic-dispatch">
+            <div class="dispatch-title">FIELD AUDIT LOG // VERIFIED OUTCOMES</div>
+            <ul class="dispatch-list">
+              <li><strong>Government Inter College Dobhalwala &amp; Girls Govt. Hostel:</strong> Delivered intensive CS instruction, lifting student assessment scores by <strong>48%</strong>.</li>
+              <li><strong>Blind &amp; Government Schools (Pune &amp; Dehradun):</strong> Conducted foundational computing, science prep, and career mentorship across <strong>16+ government institutions</strong>.</li>
+              <li><strong>Elder &amp; Animal Welfare:</strong> Raised <strong>₹1,25,000 INR</strong> and delivered emotional and material care to <strong>4,500+ seniors</strong> and <strong>75 animal shelters</strong>.</li>
+              <li><strong>Global Recognition:</strong> Awarded <strong>The Diana Award (2026)</strong> for sustained humanitarian leadership.</li>
+            </ul>
           </div>
-          <ul class="exp-ul" style="margin-top:16px">
-            <li>Worked across web development, JavaScript, data science, cybersecurity tracks</li>
-            <li>Won team raffle; networked with Morgan Stanley employees</li>
-          </ul>
         </div>
-      </div>
 
-      <div class="tl-item rv d1">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div>
-              <div class="exp-title">Summer Intern · Top 200</div>
-              <div class="exp-co">IISER Bhopal</div>
-            </div>
-            <span class="exp-date">May – Jun 2023</span>
+        <div class="civic-metrics-grid">
+          <div>
+            <div class="civic-stat-num">4,500+</div>
+            <div class="civic-stat-label">Senior Citizens Supported Across Care Homes</div>
           </div>
-          <ul class="exp-ul" style="margin-top:16px">
-            <li>Among top 200 students nationally selected for IISER Summer Outreach Camp 2023</li>
-            <li>Worked with professors in neuroscience and computer sciences</li>
-            <li>Hands-on lab sessions and research exposure</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item rv d2">
-        <div class="tl-dot"></div>
-        <div class="exp-card">
-          <div class="exp-head">
-            <div>
-              <div class="exp-title">CS Club President · Grade Lead</div>
-              <div class="exp-co">Kissan International School</div>
-            </div>
-            <span class="exp-date">Mar 2023 – Mar 2025</span>
+          <div>
+            <div class="civic-stat-num">75</div>
+            <div class="civic-stat-label">Animal Shelters Aided &amp; Supplied</div>
           </div>
-          <ul class="exp-ul" style="margin-top:16px">
-            <li>Founded and led CS Club; organized Hack Kissan 0.1 with 2,500+ participants</li>
-            <li>International olympiad awardee — gold medals in Singapore, Asian, American olympiads</li>
-            <li>Outstanding Academic Award · Chess Tournaments Winner · Newsletter Chief Editor</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ PROJECTS ═══ -->
-<section class="section" id="projects">
-  <div class="container">
-    <div class="sec-head rv">
-      <div class="sec-label">Build</div>
-      <h2 class="sec-title">Projects</h2>
-    </div>
-    <div class="proj-grid">
-
-      <div class="pcard rv">
-        <span class="p-badge">Flagship</span>
-        <div class="p-title">Aasha</div>
-        <div class="p-ctx">Multilingual AI Companion</div>
-        <p class="p-desc">Multilingual companion for senior citizens in old age homes. Voice-first interaction with custom NLP pipelines. Recognized by AIIMS Delhi for measurable impact on elderly mental wellness.</p>
-        <div class="p-tags">
-          <span class="p-tag">Agentic AI</span><span class="p-tag">NLP</span>
-          <span class="p-tag">Voice UI</span><span class="p-tag">Memory Systems</span>
-        </div>
-        <div style="margin-top:auto;font-size:13px;color:var(--gray);font-weight:600">
-          1,500+ MAU · 68 old age homes
-        </div>
-      </div>
-
-      <div class="pcard rv d1">
-        <span class="p-badge">Healthcare</span>
-        <div class="p-title">Aarolic</div>
-        <div class="p-ctx">AI Healthcare Ecosystem</div>
-        <p class="p-desc">End-to-end GenAI healthcare platform. Intelligent pre-diagnosis, smart scheduling, e-prescriptions, and real-time hospital analytics with microservices.</p>
-        <div class="p-tags">
-          <span class="p-tag">GenAI</span><span class="p-tag">iOS</span>
-          <span class="p-tag">Microservices</span><span class="p-tag">Healthcare</span>
-        </div>
-      </div>
-
-      <div class="pcard rv d2">
-        <span class="p-badge">Hackathon</span>
-        <div class="p-title">Female Financy</div>
-        <div class="p-ctx">Kode With Klossy Capstone</div>
-        <p class="p-desc">Financial literacy platform empowering women. Built end-to-end as capstone for top 2.3% web dev cohort.</p>
-        <div class="p-tags">
-          <span class="p-tag">HTML/CSS/JS</span><span class="p-tag">FinTech</span>
-          <span class="p-tag">Team Lead</span>
-        </div>
-      </div>
-
-      <div class="pcard rv d3">
-        <span class="p-badge">Event</span>
-        <div class="p-title">Hack Kissan 0.1</div>
-        <div class="p-ctx">First Interschool Hackathon</div>
-        <p class="p-desc">Conceived and executed the first-ever interschool hackathon. Coordinated logistics, mentors, judging. 2,500+ participants.</p>
-        <div class="p-tags">
-          <span class="p-tag">Event Architecture</span>
-          <span class="p-tag">2,500+ Participants</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ AWARDS ═══ -->
-<section class="section bg-mid" id="awards">
-  <div class="container">
-    <div class="sec-head rv">
-      <div class="sec-label">Recognition</div>
-      <h2 class="sec-title">Awards &amp; <em>Wins</em></h2>
-    </div>
-    <div class="awards-grid">
-
-      <div class="acard rv">
-        <span class="a-place gold">Recognition</span>
-        <div class="a-title">AIIMS Delhi</div>
-        <div class="a-event">India's #1 Medical Institute</div>
-        <div class="a-sub">Recognized for Aasha project impact on elderly mental wellness</div>
-      </div>
-
-      <div class="acard rv d1">
-        <span class="a-place gold">Top 50</span>
-        <div class="a-title">ISRO YUVIKA Scholar</div>
-        <div class="a-event">Indian Space Research Organisation</div>
-        <div class="a-sub">Shortlisted among India's top 50 students nationally</div>
-      </div>
-
-      <div class="acard rv d2">
-        <span class="a-place gold">Top 2.3%</span>
-        <div class="a-title">Kode With Klossy Scholar</div>
-        <div class="a-event">New York, USA · 2023</div>
-        <div class="a-sub">Selective scholarship for women in STEAM</div>
-      </div>
-
-      <div class="acard rv d3">
-        <span class="a-place gold">Scholar</span>
-        <div class="a-title">Girls Who Code × Morgan Stanley</div>
-        <div class="a-event">Summer Immersion Program · 2023</div>
-        <div class="a-sub">Full program across web dev, data science, cybersecurity</div>
-      </div>
-
-      <div class="acard rv d4">
-        <span class="a-place gold">Top 200</span>
-        <div class="a-title">IISER Bhopal Summer</div>
-        <div class="a-event">Summer Outreach Camp 2023</div>
-        <div class="a-sub">Research exposure in neuroscience and CS</div>
-      </div>
-
-      <div class="acard rv d5">
-        <span class="a-place mention">International</span>
-        <div class="a-title">Diamond Award</div>
-        <div class="a-event">Southeast Asia Science Olympiad</div>
-        <div class="a-sub">Top ranking in regional science competition</div>
-      </div>
-
-      <div class="acard rv d6">
-        <span class="a-place gold">Mathematics</span>
-        <div class="a-title">3× Gold — American Mathematics</div>
-        <div class="a-event">American Mathematics Olympiad</div>
-        <div class="a-sub">Three consecutive gold medals</div>
-      </div>
-
-      <div class="acard rv d1">
-        <span class="a-place gold">Mathematics</span>
-        <div class="a-title">Gold — Pacific Asian Math</div>
-        <div class="a-event">Pacific Asian Math Competition</div>
-        <div class="a-sub">International mathematical excellence</div>
-      </div>
-
-      <div class="acard rv d2">
-        <span class="a-place gold">Science</span>
-        <div class="a-title">4× International Chemistry Quiz</div>
-        <div class="a-event">International Chemistry Quiz Awardee</div>
-        <div class="a-sub">Four-time international awardee</div>
-      </div>
-
-      <div class="acard rv d3">
-        <span class="a-place gold">Leadership</span>
-        <div class="a-title">Harvard HPAIR Scholar</div>
-        <div class="a-event">Harvard College HPAIR Conference</div>
-        <div class="a-sub">300 global leaders · $500 scholarship</div>
-      </div>
-
-      <div class="acard rv d4">
-        <span class="a-place mention">Published</span>
-        <div class="a-title">4 Research Publications</div>
-        <div class="a-event">Academic Publications · 2024–2025</div>
-        <div class="a-sub">Peer-reviewed research across AI and CS</div>
-      </div>
-
-      <div class="acard rv d5">
-        <span class="a-place mention">Author</span>
-        <div class="a-title">2 Published Books</div>
-        <div class="a-event">Independent Publications</div>
-        <div class="a-sub">Authored and published collections</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ IMPACT ═══ -->
-<section class="section" id="impact">
-  <div class="container">
-    <div class="sec-head rv">
-      <div class="sec-label">Beyond Code</div>
-      <h2 class="sec-title">Viksit Youth — <em>Non-Profit</em></h2>
-    </div>
-    <div class="impact-grid">
-      <div class="rv">
-        <p style="font-size:15.5px;line-height:1.8;color:var(--gray);margin-bottom:22px">I founded Viksit Youth — a student-driven non-profit focused on environmental awareness, civic education, and elder care. VIKSIT stands for the younger generation advancing toward responsible and aware citizenship.</p>
-        <p style="font-size:15.5px;line-height:1.8;color:var(--gray);margin-bottom:22px">We've organized large-scale cleanup drives, provided sustained support to senior citizens in old age homes, and delivered foundational civic and science sessions at government schools across the region.</p>
-        <p style="font-size:15.5px;line-height:1.8;color:var(--gray)">Every initiative is student-led, with short-term measurable goals for environmental good and community uplift. The best technology is useless if we don't also show up for our communities in person.</p>
-      </div>
-      <div class="impact-cards rv d1">
-        <div class="icard">
-          <span class="icard-num">62,500 m²</span>
-          <span class="icard-lbl">Locations Cleaned</span>
-        </div>
-        <div class="icard">
-          <span class="icard-num">4,500<span style="font-size:0.7em">+</span></span>
-          <span class="icard-lbl">Seniors Helped</span>
-        </div>
-        <div class="icard">
-          <span class="icard-num">25<span style="font-size:0.7em">+</span></span>
-          <span class="icard-lbl">Schools Reached</span>
-        </div>
-        <div class="icard">
-          <span class="icard-num" style="color:var(--text);font-size:16px">Founder</span>
-          <span class="icard-lbl">Student-Led Impact</span>
+          <div>
+            <div class="civic-stat-num">₹1.25L</div>
+            <div class="civic-stat-label">Grassroots Capital Raised Since 2020</div>
+          </div>
+          <div>
+            <div class="civic-stat-num">+48%</div>
+            <div class="civic-stat-label">CS Score Gain at Govt. Inter College</div>
+          </div>
+          <div>
+            <div class="civic-stat-num">62,500 m²</div>
+            <div class="civic-stat-label">Public Terrain Cleaned &amp; Restored</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ PROGRAMS ═══ -->
-<section class="section bg-mid" id="programs">
-  <div class="container">
-    <div class="sec-head rv">
-      <div class="sec-label">Selective Programs</div>
-      <h2 class="sec-title">Fellowships &amp; <em>Programs</em></h2>
-    </div>
-    <div class="prog-grid">
-      <div class="prog-card rv">
-        <span class="prog-badge">Top 50 · National</span>
-        <div class="prog-yr">2024</div>
-        <div class="prog-name">YUVIKA Scholar</div>
-        <div class="prog-org">ISRO — Indian Space Research</div>
-        <p class="prog-desc">Residential space science program. Interacted with Gaganyaan astronauts and Dr. V. Narayanan. Hands-on with satellite tech and rocket systems.</p>
-      </div>
-
-      <div class="prog-card rv d1">
-        <span class="prog-badge">$500 Scholarship</span>
-        <div class="prog-yr">2024</div>
-        <div class="prog-name">CPAIR Conference</div>
-        <div class="prog-org">Harvard College Project Asian & Int'l</div>
-        <p class="prog-desc">Chosen among 300 global leaders. Networked with emerging leaders, understanding shared qualities and unique paths to impact.</p>
-      </div>
-
-      <div class="prog-card rv d2">
-        <span class="prog-badge">Top 2.3%</span>
-        <div class="prog-yr">2023</div>
-        <div class="prog-name">Kode With Klossy Scholar</div>
-        <div class="prog-org">Kode With Klossy · New York, USA</div>
-        <p class="prog-desc">Scholarship for two-week intensive Web Dev program for women in STEAM. Led capstone group, built Female Financy end-to-end.</p>
-      </div>
-
-      <div class="prog-card rv d3">
-        <div class="prog-yr">2023</div>
-        <div class="prog-name">Morgan Stanley Immersion</div>
-        <div class="prog-org">Girls Who Code × Morgan Stanley</div>
-        <p class="prog-desc">5-month program across web dev, JavaScript, data science, cybersecurity. Team raffle winner. Connected with Morgan Stanley staff.</p>
-      </div>
-
-      <div class="prog-card rv d4">
-        <span class="prog-badge">Top 200 · National</span>
-        <div class="prog-yr">2023</div>
-        <div class="prog-name">Summer Intern</div>
-        <div class="prog-org">IISER Bhopal</div>
-        <p class="prog-desc">Top 200 nationally selected. Research exposure in neuroscience and CS. Hands-on lab sessions under professor guidance.</p>
-      </div>
-
-      <div class="prog-card rv d5">
-        <div class="prog-yr">Ongoing</div>
-        <div class="prog-name">Active Research</div>
-        <div class="prog-org">Independent · 4 Publications · 2 Books</div>
-        <p class="prog-desc">Four published research papers and two books. Constant exploration across AI systems, healthcare tech, and applied CS.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SKILLS ═══ -->
-<section class="section" id="skills">
-  <div class="container">
-    <div class="sec-head rv">
-      <div class="sec-label">Technical</div>
-      <h2 class="sec-title">Skills &amp; <em>Tools</em></h2>
-    </div>
-    <div class="skills-layout">
-      <div class="scat rv">
-        <div class="scat-title">AI / ML</div>
-        <div class="stags">
-          <span class="stag">Agentic AI</span><span class="stag">LLM Fine-Tuning</span>
-          <span class="stag">Memory Systems</span><span class="stag">AI Agents</span>
-          <span class="stag">Python</span><span class="stag">PyTorch</span>
-          <span class="stag">NLP</span><span class="stag">Voice Tech</span>
+  <!-- ═══ SECTION 06: COMPENDIUM OF HONOURS, FELLOWSHIPS & OLYMPIADS ═══ -->
+  <section class="monograph-section" id="gazette">
+    <div class="shell">
+      <div class="section-header-grid reveal">
+        <div class="sec-meta-col">
+          <span class="sec-num">SECTION 06 // GAZETTE</span>
+          <span class="sec-taxonomy">HONOURS, FELLOWSHIPS &amp; MEDALS</span>
+        </div>
+        <div class="sec-title-col">
+          <h2 class="sec-heading">National ranks, international <em>laurels,</em> and selective fellowships.</h2>
+        </div>
+        <div class="sec-note-col">
+          Filter the archival index by category to inspect global honors, scientific cohorts, and olympiad medals.
         </div>
       </div>
-      <div class="scat rv d1">
-        <div class="scat-title">Full-Stack</div>
-        <div class="stags">
-          <span class="stag">iOS / Swift</span><span class="stag">JavaScript</span>
-          <span class="stag">React</span><span class="stag">Web Dev</span>
-          <span class="stag">HTML / CSS</span><span class="stag">Node.js</span>
-          <span class="stag">Flask</span><span class="stag">Databases</span>
+
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Records (24)</button>
+        <button class="filter-btn" data-filter="global">Global Honours &amp; Grants</button>
+        <button class="filter-btn" data-filter="fellowship">Selective Cohorts &amp; Panels</button>
+        <button class="filter-btn" data-filter="olympiad">International &amp; National Olympiads</button>
+      </div>
+
+      <div class="gazette-grid reveal" id="gazette-grid">
+
+        <!-- 1 -->
+        <div class="gazette-cell" data-cat="global">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">HIGHEST YOUTH HONOUR</span>
+              <span class="gazette-year">2026</span>
+            </div>
+            <h3 class="gazette-title">The Diana Award</h3>
+            <div class="gazette-inst">UNITED KINGDOM · INTERNATIONAL</div>
+            <p class="gazette-desc">Internationally recognized for sustained humanitarian leadership, eldercare innovation through Aasha, and youth mobilization via Viksit Youth.</p>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="gazette-cell" data-cat="global">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">18 UNDER 18 WINNER</span>
+              <span class="gazette-year">2025</span>
+            </div>
+            <h3 class="gazette-title">Future Global Leaders Award</h3>
+            <div class="gazette-inst">HARVARD, STANFORD &amp; YALE JUDGING PANEL</div>
+            <p class="gazette-desc">Selected among the top 18 under 18 globally by a distinguished panel of judges from Harvard, Stanford, and Yale for technical and civic impact.</p>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="gazette-cell" data-cat="fellowship">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">TOP 5 IN INDIA · GOLD SHIELD</span>
+              <span class="gazette-year">2024–25</span>
+            </div>
+            <h3 class="gazette-title">AIIMS Delhi Invited Panelist</h3>
+            <div class="gazette-inst">ALL INDIA INSTITUTE OF MEDICAL SCIENCES</div>
+            <p class="gazette-desc">Invited among top 5 students nationwide to speak on AI &amp; healthcare innovation alongside medical and technology leaders; honored with a Gold Shield.</p>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="gazette-cell" data-cat="fellowship">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">TOP 52 NATIONALLY (0.01%)</span>
+              <span class="gazette-year">2024</span>
+            </div>
+            <h3 class="gazette-title">ISRO YUVIKA Space Scholar</h3>
+            <div class="gazette-inst">INDIAN SPACE RESEARCH ORGANISATION</div>
+            <p class="gazette-desc">Residential space science program at Satish Dhawan Space Centre; interacted 1:1 with Gaganyaan astronauts and Dr. V. Narayanan.</p>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="gazette-cell" data-cat="global">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">BEST PROJECT AWARD</span>
+              <span class="gazette-year">2023–24</span>
+            </div>
+            <h3 class="gazette-title">New York Academy of Sciences</h3>
+            <div class="gazette-inst">THE JUNIOR ACADEMY &amp; 1000 GIRLS 1000 FUTURES</div>
+            <p class="gazette-desc">Served as Team Leader (4 members + mentor); won Best Project Award for engineering a Digital Twins educational architecture for cognitive classrooms.</p>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="gazette-cell" data-cat="global">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">$1,250 FINANCIAL AWARD</span>
+              <span class="gazette-year">2024</span>
+            </div>
+            <h3 class="gazette-title">LaunchX MIT Startup Experience</h3>
+            <div class="gazette-inst">LAUNCHX · ENTREPRENEURSHIP</div>
+            <p class="gazette-desc">Selected across all online bootcamps and awarded a $1,250 scholarship in the Online Startup Experience.</p>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="gazette-cell" data-cat="fellowship">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">TOP 300 · $500 SCHOLARSHIP</span>
+              <span class="gazette-year">2024</span>
+            </div>
+            <h3 class="gazette-title">Harvard HPAIR / CPAIR Scholar</h3>
+            <div class="gazette-inst">HARVARD COLLEGE PROJECT FOR ASIAN &amp; INT’L RELATIONS</div>
+            <p class="gazette-desc">Selected among 300 global delegates with a $500 merit scholarship to engage in international policy and technology dialogues.</p>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="gazette-cell" data-cat="fellowship">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">TOP 10 (CLASS IX) / TOP 200</span>
+              <span class="gazette-year">2023</span>
+            </div>
+            <h3 class="gazette-title">IISER Bhopal Summer Outreach</h3>
+            <div class="gazette-inst">INDIAN INSTITUTE OF SCIENCE EDUCATION &amp; RESEARCH</div>
+            <p class="gazette-desc">Selected nationally for advanced laboratory research in neuroscience and computer science under IISER faculty.</p>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="gazette-cell" data-cat="fellowship">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">TOP 20 IN PUNE · TEAM LEAD</span>
+              <span class="gazette-year">2023</span>
+            </div>
+            <h3 class="gazette-title">IUCAA Astronomy &amp; Astrophysics</h3>
+            <div class="gazette-inst">INTER-UNIVERSITY CENTRE FOR ASTRONOMY &amp; ASTROPHYSICS</div>
+            <p class="gazette-desc">Selected among 20 students across Pune for a week-long residential physics &amp; astrophysics program; led a 4-member research build.</p>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="gazette-cell" data-cat="fellowship">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">TOP 100 GIRLS NATIONALLY</span>
+              <span class="gazette-year">2022</span>
+            </div>
+            <h3 class="gazette-title">All Girls Math Nurture Camp</h3>
+            <div class="gazette-inst">AG MNC · NATIONAL ENTRANCE SELECTION</div>
+            <p class="gazette-desc">Selected among 100 young women across India via competitive national entrance exam for intensive mathematical proof training.</p>
+          </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">NATIONAL CHAMPION · TOP 3 (0.001%)</span>
+              <span class="gazette-year">2022–23</span>
+            </div>
+            <h3 class="gazette-title">12th National Geography Olympiad</h3>
+            <div class="gazette-inst">GEO GENIUS · INDIA</div>
+            <p class="gazette-desc">Crowned National Champion (Top 3 in India across 3 rounds, top 0.001%); awarded ₹2,500 cash prize, certificate, and 2 medals.</p>
+          </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">INTERNATIONAL RANK 3 · GOLD SHIELD</span>
+              <span class="gazette-year">2025</span>
+            </div>
+            <h3 class="gazette-title">Unicus Mathematics Olympiad (UMO)</h3>
+            <div class="gazette-inst">INTERNATIONAL MATHEMATICS</div>
+            <p class="gazette-desc">Secured International Rank 3 and awarded a Gold Shield for mathematical problem-solving.</p>
+          </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">INTERNATIONAL RANK 1</span>
+              <span class="gazette-year">2021</span>
+            </div>
+            <h3 class="gazette-title">DOKA Depth of Knowledge Assessment</h3>
+            <div class="gazette-inst">INTERNATIONAL MATHEMATICAL ASSESSMENT</div>
+            <p class="gazette-desc">Achieved International Rank 1 with High Credit certification in Grade 7.</p>
+          </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">ALL INDIA RANK 3 · INT’L RANK 9</span>
+              <span class="gazette-year">2022</span>
+            </div>
+            <h3 class="gazette-title">SASMO Math Olympiad</h3>
+            <div class="gazette-inst">SINGAPORE &amp; ASIAN SCHOOLS MATH OLYMPIAD</div>
+            <p class="gazette-desc">Awarded Silver Medal with All India Rank 3 and International Rank 9.</p>
+          </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">DIAMOND AWARD &amp; SILVER MEDAL</span>
+              <span class="gazette-year">2025</span>
+            </div>
+            <h3 class="gazette-title">Asiarope Science &amp; Math Olympiads</h3>
+            <div class="gazette-inst">ASIAROPE INTERNATIONAL</div>
+            <p class="gazette-desc">Earned the Diamond Award in the Asiarope Science Olympiad and Silver Medal in the Asiarope Mathematics Olympiad (Grade 10).</p>
+          </div>
+        </div>
+
+        <!-- 16 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">TRIPLE GOLD MEDALS</span>
+              <span class="gazette-year">2025</span>
+            </div>
+            <h3 class="gazette-title">VANDA, IMOCSEA &amp; ISOCSEA</h3>
+            <div class="gazette-inst">SOUTHEAST ASIA SCIENCE &amp; MATH OLYMPIADS</div>
+            <p class="gazette-desc">Won Gold Medals across VANDA International Science, IMOCSEA (Math), and ISOCSEA (Science) in Grade 10.</p>
+          </div>
+        </div>
+
+        <!-- 17 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">GOLD MEDAL</span>
+              <span class="gazette-year">2022–24</span>
+            </div>
+            <h3 class="gazette-title">American Mathematics Olympiad (AMO)</h3>
+            <div class="gazette-inst">SOUTHERN ILLINOIS UNIVERSITY &amp; SIMCC</div>
+            <p class="gazette-desc">Awarded Gold Medal certification in the American Mathematics Olympiad.</p>
+          </div>
+        </div>
+
+        <!-- 18 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">BRONZE HONOR · TOP 20% GLOBALLY</span>
+              <span class="gazette-year">2024</span>
+            </div>
+            <h3 class="gazette-title">Int’l Youth Math Challenge (IYMC)</h3>
+            <div class="gazette-inst">GLOBAL MATHEMATICS COMPETITION</div>
+            <p class="gazette-desc">Cleared all three rigorous theoretical rounds to earn Bronze Honor among the top 20% of global participants.</p>
+          </div>
+        </div>
+
+        <!-- 19 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">ALL INDIA RANK 10 · 2× STATE CAMP</span>
+              <span class="gazette-year">2022–24</span>
+            </div>
+            <h3 class="gazette-title">I QUBE &amp; Vidyarthi Vigyan Manthan</h3>
+            <div class="gazette-inst">DEPT. OF SCIENCE &amp; TECHNOLOGY (VVM)</div>
+            <p class="gazette-desc">Secured AIR 10 (with cash prize &amp; medal) in I QUBE, and twice earned District Rank 3 &amp; State Camp selection in VVM.</p>
+          </div>
+        </div>
+
+        <!-- 20 -->
+        <div class="gazette-cell" data-cat="olympiad">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">HIGH DISTINCTION &amp; LEVEL 1</span>
+              <span class="gazette-year">2021–23</span>
+            </div>
+            <h3 class="gazette-title">RACI Chemistry, IAAC, Homi Bhabha &amp; Biology Bowl</h3>
+            <div class="gazette-inst">AUSTRALIA · INTERNATIONAL · INDIA</div>
+            <p class="gazette-desc">High Distinction in RACI International Chemistry Quiz (Australia); Level 1 Qualified in IAAC Astronomy; cleared Dr. Homi Bhabha Balvaidnyanik Theory (Grades 6 &amp; 9); Merit in Int’l Biology Bowl Open.</p>
+          </div>
+        </div>
+
+        <!-- 21 -->
+        <div class="gazette-cell" data-cat="fellowship">
+          <div>
+            <div class="gazette-top">
+              <span class="gazette-rank">TOP 8% WORLDWIDE · FULL SCHOLAR</span>
+              <span class="gazette-year">2022–25</span>
+            </div>
+            <h3 class="gazette-title">GSSoC ’25, SheCodes, Brooks Brainery &amp; Columbia</h3>
+            <div class="gazette-inst">OPEN SOURCE &amp; UNIVERSITY COHORTS</div>
+            <p class="gazette-desc">Selected among top 8% global contributors for GirlScript Summer of Code (2025); Delac Foundation Full Scholar at SheCodes (4-month bootcamp); completed Columbia Coding, Georgia Tech BME, and UBC Ecology courses.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 07: TECHNICAL INDEX & OFF-SCREEN DISCIPLINES ═══ -->
+  <section class="monograph-section" id="disciplines" style="border-bottom: none;">
+    <div class="shell">
+      <div class="section-header-grid reveal">
+        <div class="sec-meta-col">
+          <span class="sec-num">SECTION 07 // APPARATUS</span>
+          <span class="sec-taxonomy">STACK, CERTIFICATIONS &amp; CHARACTER</span>
+        </div>
+        <div class="sec-title-col">
+          <h2 class="sec-heading">Technical stack &amp; <em>off-screen</em> precision.</h2>
+        </div>
+        <div class="sec-note-col">
+          Because how you aim a 10-meter air pistol or play an endgame in chess shapes how you debug distributed systems.
         </div>
       </div>
-      <div class="scat rv d2">
-        <div class="scat-title">Other</div>
-        <div class="stags">
-          <span class="stag">Data Science</span><span class="stag">Cybersecurity</span>
-          <span class="stag">GenAI Systems</span><span class="stag">Microservices</span>
-          <span class="stag">System Design</span><span class="stag">Go</span>
-          <span class="stag">Project Architecture</span>
+
+      <div class="dual-ledger">
+        <div class="reveal">
+          <table class="tech-spec-table">
+            <tbody>
+              <tr>
+                <th>01 // Languages</th>
+                <td>
+                  <span class="skill-token">Python</span>
+                  <span class="skill-token">Go (Golang)</span>
+                  <span class="skill-token">JavaScript / TypeScript</span>
+                  <span class="skill-token">Java</span>
+                  <span class="skill-token">C++</span>
+                  <span class="skill-token">Objective-C / Swift</span>
+                  <span class="skill-token">HTML5 / CSS3</span>
+                </td>
+              </tr>
+              <tr>
+                <th>02 // AI &amp; Systems</th>
+                <td>
+                  <span class="skill-token">Agentic Workflows</span>
+                  <span class="skill-token">Multi-Layer LLM Memory</span>
+                  <span class="skill-token">Verifiable Unlearning</span>
+                  <span class="skill-token">Edge Computer Vision</span>
+                  <span class="skill-token">Voice &amp; Vernacular NLP</span>
+                  <span class="skill-token">OpenAI / Contextual AI</span>
+                  <span class="skill-token">PyTorch</span>
+                </td>
+              </tr>
+              <tr>
+                <th>03 // Product &amp; Stack</th>
+                <td>
+                  <span class="skill-token">iOS &amp; Android Dev</span>
+                  <span class="skill-token">React / Node.js</span>
+                  <span class="skill-token">Flask Microservices</span>
+                  <span class="skill-token">n8n Node Engineering</span>
+                  <span class="skill-token">CLI Tooling</span>
+                  <span class="skill-token">Figma UI/UX</span>
+                </td>
+              </tr>
+              <tr>
+                <th>04 // Certifications</th>
+                <td>
+                  <strong>Machine &amp; Deep Learning Specialization</strong> (Andrew Ng) · <strong>Mastering Data Structures &amp; Algorithms</strong> · <strong>Prompt Engineering &amp; Programming with OpenAI</strong> · <strong>The Complete Web Development Bootcamp</strong> · <strong>Kode With Klossy Scholar</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="discipline-box reveal">
+          <div class="box-header">
+            <span>OFF-SCREEN DISCIPLINES</span>
+            <span>PHYSICAL &amp; TACTICAL</span>
+          </div>
+
+          <div class="disc-item">
+            <span class="disc-name">10m Air Pistol &amp; Rifle</span>
+            <span class="disc-detail">Trained Marksman · Gun for Glory Shooting Academy, India</span>
+          </div>
+
+          <div class="disc-item">
+            <span class="disc-name">Competitive Chess</span>
+            <span class="disc-detail">Playing since age 10 · U-17 District Rank 1 &amp; U-15 Champion</span>
+          </div>
+
+          <div class="disc-item">
+            <span class="disc-name">Shito-Ryu Karate Do</span>
+            <span class="disc-detail">Yellow Belt · Ichiban Shito-Ryu Martial Arts</span>
+          </div>
+
+          <div class="disc-item">
+            <span class="disc-name">Throwball Athletics</span>
+            <span class="disc-detail">Trophy &amp; Certificate · Interschool Championship Winner</span>
+          </div>
+
+          <div class="disc-item">
+            <span class="disc-name">Artisanal Baking</span>
+            <span class="disc-detail">2× Winner · Intra- &amp; Interschool Baking Competitions (Classes IX &amp; X)</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ CONTACT ═══ -->
-<section class="section contact-section" id="contact">
-  <div class="container">
-    <div class="contact-inner rv">
-      <div class="sec-label" style="color:rgba(255,255,255,.3);justify-content:center">Get In Touch</div>
-      <h2 class="sec-title" style="margin-bottom:18px;color:var(--white)">Let's <em>Connect</em></h2>
-      <p class="contact-sub">Open to research collaborations, hackathon opportunities, AI partnerships, and conversations about building systems that matter to communities.</p>
-      <div class="contact-links">
-        <a href="https://www.linkedin.com/in/prerna-singhal-b4074b282/" target="_blank" rel="noopener" class="cl">
-          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://x.com/singhalprern" target="_blank" rel="noopener" class="cl">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Twitter / X
-        </a>
+  <!-- ═══ COLOPHON / DIRECT CHANNEL ═══ -->
+  <footer class="colophon" id="contact">
+    <div class="shell">
+      <div class="colophon-grid reveal">
+        <div class="colophon-left">
+          <div class="kicker">COLOPHON &amp; DIRECT CHANNEL</div>
+          <h2 class="colophon-heading">
+            Available for research labs, <em>venture</em> collaborations, and keynotes.
+          </h2>
+          <a href="mailto:prernasinghal14@gmail.com" class="direct-mail">prernasinghal14@gmail.com</a>
+        </div>
+
+        <div class="colophon-right">
+          <div class="contact-ledger-row">
+            <span>TELEPHONE (IN)</span>
+            <a href="tel:+919373350398">+91 93733 50398</a>
+          </div>
+          <div class="contact-ledger-row">
+            <span>LINKEDIN</span>
+            <a href="https://www.linkedin.com/in/prerna-singhal-b4074b282/" target="_blank" rel="noopener">/in/prerna-singhal-b4074b282 ↗</a>
+          </div>
+          <div class="contact-ledger-row">
+            <span>TWITTER / X</span>
+            <a href="https://x.com/singhalprern" target="_blank" rel="noopener">@singhalprern ↗</a>
+          </div>
+          <div class="contact-ledger-row">
+            <span>BASE</span>
+            <span>Pune, Maharashtra, India</span>
+          </div>
+        </div>
       </div>
-      <a href="mailto:prernasinghal14@gmail.com" class="contact-email">prernasinghal14@gmail.com</a>
+
+      <div class="colophon-bottom">
+        <span>© 2026 PRERNA SINGHAL · ALL RIGHTS RESERVED</span>
+        <span>SET IN FRAUNCES, PLUS JAKARTA SANS &amp; SPACE MONO</span>
+        <a href="#top">RETURN TO MASTHEAD ↑</a>
+      </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<footer>
-  <p>&copy; 2025 Prerna Singhal &nbsp;&middot;&nbsp; Empros International School · Maharashtra, India &nbsp;&middot;&nbsp; Built with intention</p>
-</footer>
-
-<script>
-  // NAV
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
-
-  // MOBILE MENU
-  document.getElementById('nav-burger').addEventListener('click', () => {
-    document.getElementById('nav-links').classList.toggle('open');
-  });
-
-  // SCROLL REVEAL
-  const revObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.rv').forEach(el => revObs.observe(el));
-
-  // Smooth scroll nav links
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.getElementById('nav-links').classList.remove('open');
+  <script>
+    // Theme Switcher (Warm Vellum Paper <-> Obsidian Archival Plate)
+    const themeBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+    themeBtn.addEventListener('click', () => {
+      const isObsidian = htmlEl.getAttribute('data-theme') === 'obsidian';
+      htmlEl.setAttribute('data-theme', isObsidian ? 'paper' : 'obsidian');
+      themeBtn.textContent = isObsidian ? 'Obsidian Plate' : 'Vellum Paper';
     });
-  });
-</script>
+
+    // Mobile Index Toggle
+    const burger = document.getElementById('nav-burger');
+    const navLinks = document.getElementById('nav-links');
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Gazette Category Filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const gazetteCells = document.querySelectorAll('.gazette-cell');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        gazetteCells.forEach(cell => {
+          if (filter === 'all' || cell.getAttribute('data-cat') === filter) {
+            cell.classList.remove('hidden');
+          } else {
+            cell.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Restrained Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
