@@ -1448,6 +1448,96 @@
       text-align: right;
     }
 
+    
+    /* ─── SECTION 08: MEDIA & PRESS DISPATCHES ─── */
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 28px;
+    }
+
+    .press-card-feature {
+      grid-column: span 7;
+      border: 1.5px solid var(--rule-strong);
+      background: var(--bg-elevated);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .press-card-sidebar {
+      grid-column: span 5;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .press-mini-card {
+      border: 1px solid var(--rule-strong);
+      background: var(--bg-elevated);
+      padding: 22px 24px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .press-mini-card:hover {
+      background: var(--bg-primary);
+      transform: translateY(-2px);
+    }
+
+    .press-outlet-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .press-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .press-summary {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .press-link {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      padding-bottom: 2px;
+      transition: opacity 0.2s ease;
+    }
+
+    .press-link:hover {
+      opacity: 0.7;
+    }
+
+    @media (max-width: 1024px) {
+      .press-card-feature,
+      .press-card-sidebar {
+        grid-column: span 12;
+      }
+    }
+
     /* ─── COLOPHON / CONTACT ─── */
     .colophon {
       padding: 96px 0 64px;
@@ -1664,7 +1754,7 @@
     <div class="shell nav-bar">
       <a href="#top" class="brand-mark">
         <span class="brand-name">Prerna Singhal</span>
-        <span class="brand-index">[INDEX 01–07]</span>
+        <span class="brand-index">[INDEX 01–08]</span>
       </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="#dossier">01. Dossier</a></li>
@@ -1674,6 +1764,7 @@
         <li><a href="#civic">05. Viksit Youth</a></li>
         <li><a href="#gazette">06. Laurels</a></li>
         <li><a href="#disciplines">07. Apparatus</a></li>
+        <li><a href="#press">08. Press</a></li>
       </ul>
       <div class="nav-controls">
         <button class="theme-btn" id="theme-toggle" type="button" aria-label="Switch color mode">Obsidian Plate</button>
@@ -1691,7 +1782,7 @@
           <div>
             <div class="kicker">Systems Builder · Published Researcher · Patented Inventor</div>
             <h1 class="hero-display">
-              Prerna <em> Singhal.</em>
+              Prerna<br><em>Singhal.</em>
             </h1>
             <p class="hero-lead">
               I build voice companions for senior citizens across 68 care homes, edge-vision hardware for Indian highways, and multi-layer memory architectures for autonomous AI agents.
@@ -1812,7 +1903,7 @@
       <div class="dossier-grid">
         <div class="dossier-essay reveal">
           <p class="dropcap-p">
-            I am disciple of experience. I prefer learning thorugh experience and building things. When I noticed how isolation erodes cognitive health in senior care facilities across Maharashtra, I didn't stop at a slide deck—I wrote the voice pipelines, memory layers, and multilingual interfaces for Aasha, and deployed it across 68 old-age homes.
+            Most student portfolios read like a checklist of rehearsals for the real world. I prefer building things that live in it right now. When I noticed how isolation erodes cognitive health in senior care facilities across Maharashtra, I didn't stop at a slide deck—I wrote the voice pipelines, memory layers, and multilingual interfaces for Aasha, and deployed it across 68 old-age homes.
           </p>
           <p class="essay-p">
             When my dog Coco passed away in a road accident, grief turned into two years of hardware engineering alongside Dr. Arvind Sharma—training computer vision models on edge processors to build PashuPran, a spatial anomaly and threat detection device now patented and placed with traffic police stations to protect animals and pedestrians on Indian roads.
@@ -2754,6 +2845,8 @@
       </div>
     </div>
   </section>
+
+  
   <!-- ═══ SECTION 08: MEDIA COVERAGE & PRESS DISPATCHES ═══ -->
   <section class="monograph-section" id="press" style="border-bottom: none;">
     <div class="shell">
@@ -2841,6 +2934,7 @@
       </div>
     </div>
   </section>
+
   <!-- ═══ COLOPHON / DIRECT CHANNEL ═══ -->
   <footer class="colophon" id="contact">
     <div class="shell">
