@@ -99,7 +99,7 @@
       padding: 0 var(--gutter);
     }
 
-    /* ─── TOP MASTHEAD & BROADSHEET BAR ─── */
+    /* ─── REFINED EDITORIAL NAVIGATION ─── */
     .masthead {
       position: sticky;
       top: 0;
@@ -109,83 +109,68 @@
       transition: background-color 0.35s ease;
     }
 
-    .masthead-meta {
-      border-bottom: 1px solid var(--rule-hairline);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      padding: 7px 0;
-    }
-
-    .masthead-meta-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .status-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-primary);
-      font-weight: 700;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--accent);
-      display: inline-block;
-    }
-
     .nav-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 62px;
-      gap: 24px;
+      height: 68px;
+      gap: 28px;
     }
 
     .brand-mark {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
     }
 
     .brand-name {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 600;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      white-space: nowrap;
+      transition: color 0.2s ease;
     }
 
-    .brand-index {
-      font-family: var(--font-mono);
-      font-size: 11px;
+    .brand-mark:hover .brand-name {
       color: var(--accent);
-      letter-spacing: 0.05em;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
     }
 
     .nav-links {
       list-style: none;
       display: flex;
       align-items: center;
-      gap: 26px;
+      justify-content: center;
+      gap: clamp(14px, 1.8vw, 26px);
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .nav-links a {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
       color: var(--text-secondary);
-      padding: 4px 0;
+      padding: 6px 2px;
       position: relative;
+      text-decoration: none;
       transition: color 0.2s ease;
+      display: inline-block;
     }
 
     .nav-links a::after {
@@ -194,7 +179,7 @@
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 1.5px;
+      height: 2px;
       background: var(--accent);
       transform: scaleX(0);
       transform-origin: left;
@@ -213,18 +198,44 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .nav-contact-btn {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 8px 14px;
+      background: var(--rule-strong);
+      color: var(--bg-primary);
+      border: 1.5px solid var(--rule-strong);
+      white-space: nowrap;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .nav-contact-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #FAF7F1;
     }
 
     .theme-btn {
       background: transparent;
-      border: 1px solid var(--rule-strong);
+      border: 1.5px solid var(--rule-strong);
       color: var(--text-primary);
       font-family: var(--font-mono);
-      font-size: 10.5px;
+      font-size: 11px;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 6px 11px;
+      letter-spacing: 0.05em;
+      padding: 7px 13px;
       cursor: pointer;
+      white-space: nowrap;
       transition: background 0.2s ease, color 0.2s ease;
     }
 
@@ -236,12 +247,13 @@
     .nav-burger {
       display: none;
       background: none;
-      border: 1px solid var(--rule-strong);
+      border: 1.5px solid var(--rule-strong);
       color: var(--text-primary);
       padding: 6px 10px;
       font-family: var(--font-mono);
       font-size: 11px;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     /* ─── HERO EDITORIAL SPREAD ─── */
@@ -1703,6 +1715,25 @@
     }
 
     @media (max-width: 720px) {
+      @media (max-width: 1060px) {
+      .nav-links {
+        gap: 12px;
+      }
+      .nav-links a {
+        font-size: 12.5px;
+      }
+      .nav-contact-btn {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-container {
+        display: none;
+      }
+      .nav-burger {
+        display: inline-block;
+      }
       .nav-links {
         display: none;
         position: absolute;
@@ -1719,9 +1750,7 @@
       .nav-links.open {
         display: flex;
       }
-      .nav-burger {
-        display: inline-block;
-      }
+    }
       .ledger-strip {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1739,36 +1768,30 @@
 </head>
 <body>
 
-  <!-- ═══ TOP MASTHEAD ═══ -->
+  <!-- ═══ TOP NAVIGATION BAR ═══ -->
   <header class="masthead" id="top">
-    <div class="masthead-meta">
-      <div class="shell masthead-meta-inner">
-        <span>MONOGRAPH &amp; DOSSIER · VOL. IV</span>
-        <span>18.5204° N, 73.8567° E — PUNE, MAHARASHTRA, IN</span>
-        <span class="status-indicator">
-          <span class="status-dot"></span>
-          DIANA AWARD ’26 · REAKON COFOUNDER · HEAD GIRL
-        </span>
-      </div>
-    </div>
     <div class="shell nav-bar">
       <a href="#top" class="brand-mark">
         <span class="brand-name">Prerna Singhal</span>
-        <span class="brand-index">[INDEX 01–08]</span>
       </a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#dossier">01. Dossier</a></li>
-        <li><a href="#systems">02. Inventions</a></li>
-        <li><a href="#research">03. Research &amp; Books</a></li>
-        <li><a href="#tenure">04. Tenure</a></li>
-        <li><a href="#civic">05. Viksit Youth</a></li>
-        <li><a href="#gazette">06. Laurels</a></li>
-        <li><a href="#disciplines">07. Apparatus</a></li>
-        <li><a href="#press">08. Press</a></li>
-      </ul>
+
+      <nav class="nav-container" aria-label="Primary navigation">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#dossier">About</a></li>
+          <li><a href="#systems">Inventions</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#tenure">Experience</a></li>
+          <li><a href="#civic">Impact</a></li>
+          <li><a href="#gazette">Honors</a></li>
+          <li><a href="#disciplines">Apparatus</a></li>
+          <li><a href="#press">Press</a></li>
+        </ul>
+      </nav>
+
       <div class="nav-controls">
-        <button class="theme-btn" id="theme-toggle" type="button" aria-label="Switch color mode">Obsidian Plate</button>
-        <button class="nav-burger" id="nav-burger" type="button" aria-label="Menu">INDEX</button>
+        <a href="#contact" class="nav-contact-btn">Get in Touch</a>
+        <button class="theme-btn" id="theme-toggle" type="button" aria-label="Switch color mode">Obsidian Mode</button>
+        <button class="nav-burger" id="nav-burger" type="button" aria-label="Menu">MENU</button>
       </div>
     </div>
   </header>
